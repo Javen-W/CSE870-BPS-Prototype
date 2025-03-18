@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://codyys3sikh3v"]
 
 [ext_resource type="PackedScene" uid="uid://ch72lgn35p8l" path="res://assets/free_car_lowpoly/FREE_CAR_01.fbx" id="1_yiem6"]
-[ext_resource type="Script" path="res://scenes/Car01.cs" id="2_a6s4r"]
+[ext_resource type="Script" path="res://scenes/car_01/Car01.cs" id="2_a6s4r"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pyex0"]
 transparency = 1
@@ -19,7 +19,7 @@ albedo_color = Color(1, 1, 1, 0)
 [sub_resource type="BoxShape3D" id="BoxShape3D_il7yj"]
 size = Vector3(2.27, 2.05, 4.045)
 
-[node name="Car_01" instance=ExtResource("1_yiem6")]
+[node name="Car01" instance=ExtResource("1_yiem6")]
 script = ExtResource("2_a6s4r")
 
 [node name="car body" parent="." index="0"]
