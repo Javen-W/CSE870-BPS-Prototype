@@ -29,7 +29,7 @@ shadow_enabled = true
 [node name="Cameras" type="Node3D" parent="."]
 
 [node name="Camera3D_Side" type="Camera3D" parent="Cameras"]
-transform = Transform3D(-0.00259868, -0.333055, 0.942904, 0, 0.942907, 0.333057, -0.999997, 0.000865509, -0.00245032, 9.31616, 4.71109, 0.141199)
+transform = Transform3D(-0.00174539, -0.835806, 0.549022, 0, 0.549023, 0.835807, -0.999998, 0.00145881, -0.000958257, 6.794, 9.419, 0.141)
 current = true
 
 [node name="Camera3D_Top" type="Camera3D" parent="Cameras"]
@@ -41,3 +41,10 @@ transform = Transform3D(0.00178256, -0.999998, 0.000796273, 0, 0.000796274, 1, -
 
 [node name="Car01" parent="." instance=ExtResource("2_i76hr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.68762, 0)
+
+[node name="Camera3D_Inside" type="Camera3D" parent="Car01"]
+transform = Transform3D(-0.997119, 0.00278221, 0.0758038, 0, 0.999327, -0.0366781, -0.0758549, -0.0365724, -0.996448, 0.337236, 1.3353, -0.247986)
+
+[node name="Camera3D_Rear" type="Camera3D" parent="Car01"]
+transform = Transform3D(0.999722, -0.000144906, -0.0235869, 0, 0.999981, -0.00614339, 0.0235873, 0.00614168, 0.999703, -0.0555706, 0.853151, -1.72057)
+fov = 120.0
