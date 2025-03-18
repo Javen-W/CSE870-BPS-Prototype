@@ -20,10 +20,14 @@ transparency = 1
 albedo_color = Color(1, 1, 1, 0)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_il7yj"]
-size = Vector3(2.27, 2.05, 4.045)
+size = Vector3(2.055, 1.525, 3.21)
 
 [node name="Car01" instance=ExtResource("1_yiem6")]
+mass = 200.0
 script = ExtResource("2_a6s4r")
+SteerSpeed = 20.0
+SteerLimit = 0.8
+EngineForceValue = 10.0
 
 [node name="car body" parent="." index="0"]
 transform = Transform3D(100, 0, 0, 0, -4.37114e-06, 100, 0, -100, -4.37114e-06, 0, 0, 0.0804537)
@@ -39,7 +43,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_n8kbm")
 surface_material_override/0 = SubResource("StandardMaterial3D_ow4gn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.912033, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.04554, 0)
 shape = SubResource("BoxShape3D_il7yj")
 
 [node name="StateMachine" parent="." index="2" node_paths=PackedStringArray("CurrentState") instance=ExtResource("3_4jn1c")]
@@ -52,3 +56,41 @@ Car = NodePath("../..")
 [node name="ReverseState" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("Car")]
 script = ExtResource("5_qlskt")
 Car = NodePath("../..")
+
+[node name="Wheel1" type="VehicleWheel3D" parent="." index="3"]
+transform = Transform3D(1.66663, 0, 0, 0, 1, 0, 0, 0, 1.30638, 0.956108, 0.155903, 1.15734)
+use_as_traction = true
+use_as_steering = true
+wheel_roll_influence = 0.4
+wheel_radius = 0.18
+wheel_friction_slip = 1.0
+suspension_stiffness = 30.0
+damping_compression = 0.88
+
+[node name="Wheel2" type="VehicleWheel3D" parent="." index="4"]
+transform = Transform3D(1.66663, 0, 0, 0, 1, 0, 0, 0, 1.30638, 0.956108, 0.155903, -1.30854)
+use_as_traction = true
+wheel_roll_influence = 0.4
+wheel_radius = 0.18
+wheel_friction_slip = 1.0
+suspension_stiffness = 30.0
+damping_compression = 0.88
+
+[node name="Wheel3" type="VehicleWheel3D" parent="." index="5"]
+transform = Transform3D(1.66663, 0, 0, 0, 1, 0, 0, 0, 1.30638, -0.956108, 0.155903, 1.15734)
+use_as_traction = true
+use_as_steering = true
+wheel_roll_influence = 0.4
+wheel_radius = 0.18
+wheel_friction_slip = 1.0
+suspension_stiffness = 30.0
+damping_compression = 0.88
+
+[node name="Wheel4" type="VehicleWheel3D" parent="." index="6"]
+transform = Transform3D(1.66663, 0, 0, 0, 1, 0, 0, 0, 1.30638, -0.956108, 0.155903, -1.30854)
+use_as_traction = true
+wheel_roll_influence = 0.4
+wheel_radius = 0.18
+wheel_friction_slip = 1.0
+suspension_stiffness = 30.0
+damping_compression = 0.88
