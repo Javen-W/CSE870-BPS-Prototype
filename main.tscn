@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://byrdlcw7ro6w7"]
 
 [ext_resource type="PackedScene" uid="uid://bmtig2uu2p4vi" path="res://scenes/road_straight.tscn" id="2_34mt6"]
-[ext_resource type="PackedScene" uid="uid://codyys3sikh3v" path="res://scenes/car_01.tscn" id="2_i76hr"]
+[ext_resource type="PackedScene" uid="uid://codyys3sikh3v" path="res://scenes/Car_01.tscn" id="2_i76hr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e3nxo"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -28,6 +28,10 @@ shadow_enabled = true
 
 [node name="Cameras" type="Node3D" parent="."]
 
+[node name="Camera3D_Side" type="Camera3D" parent="Cameras"]
+transform = Transform3D(-0.00259868, -0.333055, 0.942904, 0, 0.942907, 0.333057, -0.999997, 0.000865509, -0.00245032, 9.31616, 4.71109, 0.141199)
+current = true
+
 [node name="Camera3D_Top" type="Camera3D" parent="Cameras"]
 transform = Transform3D(0.00178256, -0.999998, 0.000796273, 0, 0.000796274, 1, -0.999998, -0.00178256, 1.4194e-06, 0, 9, -1.7)
 
@@ -36,6 +40,7 @@ transform = Transform3D(0.00178256, -0.999998, 0.000796273, 0, 0.000796274, 1, -
 [node name="road_straight" parent="Roads" instance=ExtResource("2_34mt6")]
 
 [node name="Cars" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.31667, 0)
 
-[node name="FREE_CAR_01" parent="Cars" instance=ExtResource("2_i76hr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20411, 0)
+[node name="Car_01" parent="Cars" instance=ExtResource("2_i76hr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.86383, 0)
