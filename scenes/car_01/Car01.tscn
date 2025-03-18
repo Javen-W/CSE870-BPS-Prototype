@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://codyys3sikh3v"]
+[gd_scene load_steps=10 format=3 uid="uid://codyys3sikh3v"]
 
 [ext_resource type="PackedScene" uid="uid://ch72lgn35p8l" path="res://assets/free_car_lowpoly/FREE_CAR_01.fbx" id="1_yiem6"]
 [ext_resource type="Script" path="res://scenes/car_01/Car01.cs" id="2_a6s4r"]
+[ext_resource type="PackedScene" uid="uid://cp1l3rohtd5b7" path="res://scenes/state_machine/StateMachine.tscn" id="3_4jn1c"]
+[ext_resource type="Script" path="res://scenes/car_01/ForwardState.cs" id="4_wuq25"]
+[ext_resource type="Script" path="res://scenes/car_01/ReverseState.cs" id="5_qlskt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pyex0"]
 transparency = 1
@@ -38,3 +41,14 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ow4gn")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.912033, 0)
 shape = SubResource("BoxShape3D_il7yj")
+
+[node name="StateMachine" parent="." index="2" node_paths=PackedStringArray("CurrentState") instance=ExtResource("3_4jn1c")]
+CurrentState = NodePath("ForwardState")
+
+[node name="ForwardState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("Car")]
+script = ExtResource("4_wuq25")
+Car = NodePath("../..")
+
+[node name="ReverseState" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("Car")]
+script = ExtResource("5_qlskt")
+Car = NodePath("../..")
