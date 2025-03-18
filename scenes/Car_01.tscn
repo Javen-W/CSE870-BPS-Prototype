@@ -16,13 +16,14 @@ albedo_color = Color(1, 1, 1, 0)
 transparency = 1
 albedo_color = Color(1, 1, 1, 0)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_2vyqk"]
-size = Vector3(2.2, 2.336, 5)
+[sub_resource type="BoxShape3D" id="BoxShape3D_il7yj"]
+size = Vector3(2.27, 2.05, 4.045)
 
 [node name="Car_01" instance=ExtResource("1_yiem6")]
-axis_lock_angular_y = true
-gravity_scale = 0.15
 script = ExtResource("2_a6s4r")
+
+[node name="car body" parent="." index="0"]
+transform = Transform3D(100, 0, 0, 0, -4.37114e-06, 100, 0, -100, -4.37114e-06, 0, 0, 0.0804537)
 
 [node name="windows" parent="car body" index="0"]
 transparency = 1.0
@@ -35,5 +36,5 @@ surface_material_override/0 = SubResource("StandardMaterial3D_n8kbm")
 surface_material_override/0 = SubResource("StandardMaterial3D_ow4gn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.856614, 0)
-shape = SubResource("BoxShape3D_2vyqk")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.912033, 0)
+shape = SubResource("BoxShape3D_il7yj")
