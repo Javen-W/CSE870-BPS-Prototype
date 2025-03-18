@@ -29,7 +29,7 @@ shadow_enabled = true
 [node name="Cameras" type="Node3D" parent="."]
 
 [node name="Camera3D_Top" type="Camera3D" parent="Cameras"]
-transform = Transform3D(0.00178256, -0.999998, 0.000796273, 0, 0.000796274, 1, -0.999998, -0.00178256, 1.4194e-06, -0.583919, 75.8495, -5.64712)
+transform = Transform3D(0.00178256, -0.999998, 0.000796273, 0, 0.000796274, 1, -0.999998, -0.00178256, 1.4194e-06, 0, 9, -1.7)
 
 [node name="Roads" type="Node3D" parent="."]
 
