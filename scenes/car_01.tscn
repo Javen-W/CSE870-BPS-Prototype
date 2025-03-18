@@ -1,11 +1,34 @@
-[gd_scene load_steps=3 format=3 uid="uid://codyys3sikh3v"]
+[gd_scene load_steps=6 format=3 uid="uid://codyys3sikh3v"]
 
 [ext_resource type="PackedScene" uid="uid://ch72lgn35p8l" path="res://assets/free_car_lowpoly/FREE_CAR_01.fbx" id="1_yiem6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pyex0"]
+transparency = 1
+cull_mode = 1
+albedo_color = Color(1, 1, 1, 0.0392157)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n8kbm"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ow4gn"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2vyqk"]
 size = Vector3(1, 2.77588, 5)
 
 [node name="FREE_CAR_01" instance=ExtResource("1_yiem6")]
+
+[node name="windows" parent="car body" index="0"]
+transparency = 1.0
+surface_material_override/0 = SubResource("StandardMaterial3D_pyex0")
+
+[node name="win door r_001" parent="car body/door r" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_n8kbm")
+
+[node name="win door l_001" parent="car body/door l" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ow4gn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
 transform = Transform3D(1.89831, 0, 0, 0, 0.622205, 0, 0, 0, 0.736775, 0, 0.856614, 0)
