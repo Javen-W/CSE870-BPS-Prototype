@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="CSE849 BPS Prototype"
+run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [dotnet]
 
 project/assembly_name="CSE849 BPS Prototype"
+
+[filesystem]
+
+import/blender/enabled=false

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://codyys3sikh3v"]
+
+[ext_resource type="PackedScene" uid="uid://ch72lgn35p8l" path="res://assets/free_car_lowpoly/FREE_CAR_01.fbx" id="1_yiem6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2vyqk"]
+size = Vector3(1, 2.77588, 5)
+
+[node name="FREE_CAR_01" instance=ExtResource("1_yiem6")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1.89831, 0, 0, 0, 0.622205, 0, 0, 0, 0.736775, 0, 0.856614, 0)
+shape = SubResource("BoxShape3D_2vyqk")

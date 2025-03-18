@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://byrdlcw7ro6w7"]
+
+[ext_resource type="PackedScene" uid="uid://bmtig2uu2p4vi" path="res://scenes/road_straight.tscn" id="2_34mt6"]
+[ext_resource type="PackedScene" uid="uid://codyys3sikh3v" path="res://scenes/car_01.tscn" id="2_i76hr"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e3nxo"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_ujyhm"]
+sky_material = SubResource("ProceduralSkyMaterial_e3nxo")
+
+[sub_resource type="Environment" id="Environment_iefr7"]
+background_mode = 2
+sky = SubResource("Sky_ujyhm")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Main" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0148287, -4.76837e-07, 0.00996423)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_iefr7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Cameras" type="Node3D" parent="."]
+
+[node name="Camera3D_Top" type="Camera3D" parent="Cameras"]
+transform = Transform3D(0.00178256, -0.999998, 0.000796273, 0, 0.000796274, 1, -0.999998, -0.00178256, 1.4194e-06, -0.583919, 75.8495, -5.64712)
+
+[node name="Roads" type="Node3D" parent="."]
+
+[node name="road_straight" parent="Roads" instance=ExtResource("2_34mt6")]
+
+[node name="Cars" type="Node3D" parent="."]
+
+[node name="FREE_CAR_01" parent="Cars" instance=ExtResource("2_i76hr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20411, 0)
