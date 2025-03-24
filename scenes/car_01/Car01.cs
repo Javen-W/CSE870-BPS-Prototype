@@ -52,6 +52,34 @@ namespace CSE849BPSPrototype
 			
 			Steering = (float) Mathf.MoveToward(Steering, SteerTarget, SteerSpeed * delta);
 			PreviousSpeed = LinearVelocity.Length();
+			
+			// object highlighting
+			foreach (var obj in CollisionObjects.GetChildren())
+			{
+				var inRearFov = IsNodeInCameraFov(CameraRear, obj.GetChild(0) as Node3D);
+			}
+		}
+		
+		private bool IsNodeInCameraFov(Camera3D camera, Node3D target)
+		{
+			Transform3D cameraTransform = camera.GlobalTransform;
+			Vector3 direction = cameraTransform.Origin.DirectionTo(target.GlobalTransform.Origin);
+			float distance = cameraTransform.Origin.DistanceTo(target.GlobalTransform.Origin);
+        
+			// Check if within near and far planes
+			if (distance < camera.Near || distance > camera.Far)
+			{
+				GD.Print($"Distance out of range {distance}");
+				return false;
+			}
+			
+			Vector3 cameraForward = -cameraTransform.Basis.Z.Normalized();
+			float forwardAlignment = cameraForward.Dot(direction);
+			
+			float fovAngle = Mathf.Acos(forwardAlignment);
+			float fovRadians = Mathf.DegToRad(camera.Fov) / 2.0f;
+			
+			return fovAngle <= fovRadians && forwardAlignment > 0;
 		}
 	}
 }
