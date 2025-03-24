@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 namespace CSE849BPSPrototype
 {
@@ -21,6 +22,7 @@ namespace CSE849BPSPrototype
 
 		public float SteerTarget;
 		public float PreviousSpeed;
+		private Dictionary<Node3D, ReferenceRect> _targetRects;
 		
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
@@ -39,6 +41,8 @@ namespace CSE849BPSPrototype
 			
 			// init state machine state
 			StateMachine.TransitionState("ForwardState", null);
+			
+			_targetRects = new Dictionary<Node3D, ReferenceRect>();
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -56,7 +60,8 @@ namespace CSE849BPSPrototype
 			// object highlighting
 			foreach (var obj in CollisionObjects.GetChildren())
 			{
-				var inRearFov = IsNodeInCameraFov(CameraRear, obj.GetChild(0) as Node3D);
+				var objMesh = obj.GetChild(0) as MeshInstance3D;
+				UpdateTargetRect(CameraRear, objMesh);
 			}
 		}
 		
@@ -80,6 +85,80 @@ namespace CSE849BPSPrototype
 			float fovRadians = Mathf.DegToRad(camera.Fov) / 2.0f;
 			
 			return fovAngle <= fovRadians && forwardAlignment > 0;
+		}
+		
+		private void UpdateTargetRect(Camera3D camera, MeshInstance3D target)
+	    {
+	        // If target isn't in FOV, remove its rect if it exists and return
+	        if (!IsNodeInCameraFov(camera, target))
+	        {
+	            if (_targetRects.ContainsKey(target))
+	            {
+	                _targetRects[target].QueueFree();
+	                _targetRects.Remove(target);
+	            }
+	            return;
+	        }
+
+	        // Create or get existing ReferenceRect
+	        ReferenceRect rect;
+	        if (!_targetRects.ContainsKey(target))
+	        {
+	            rect = new ReferenceRect();
+	            rect.EditorOnly = false;
+	            rect.BorderColor = Colors.Red;
+	            rect.BorderWidth = 2.0f;
+	            
+	            SubViewportRear.AddChild(rect);
+	            _targetRects[target] = rect;
+	        }
+	        else
+	        {
+	            rect = _targetRects[target];
+	        }
+
+	        float size = 50.0f;
+	        Vector2 screenPos = camera.UnprojectPosition(target.GlobalTransform.Origin);
+	        rect.Position = screenPos - new Vector2(size / 2, size / 2);
+	        rect.Size = new Vector2(size, size);
+
+			// Use AABB for better bounds
+			/*
+				Aabb aabb = target.GetAabb();
+			   Vector3[] corners = GetAabbCorners(aabb, target.GlobalTransform);
+			   Vector2 minPos = new Vector2(float.MaxValue, float.MaxValue);
+			   Vector2 maxPos = new Vector2(float.MinValue, float.MinValue);
+			   
+			   foreach (Vector3 corner in corners)
+			   {
+			       Vector2 corner2D = camera.UnprojectPosition(corner);
+			       minPos.X = Mathf.Min(minPos.X, corner2D.X);
+			       minPos.Y = Mathf.Min(minPos.Y, corner2D.Y);
+			       maxPos.X = Mathf.Max(maxPos.X, corner2D.X);
+			       maxPos.Y = Mathf.Max(maxPos.Y, corner2D.Y);
+			   }
+			   
+			   rect.Position = minPos;
+			   rect.Size = maxPos - minPos;
+			 */
+	    }
+		
+		private Vector3[] GetAabbCorners(Aabb aabb, Transform3D transform)
+		{
+			Vector3[] corners = new Vector3[8];
+			Vector3 min = aabb.Position;
+			Vector3 max = aabb.End;
+        
+			corners[0] = transform * new Vector3(min.X, min.Y, min.Z);
+			corners[1] = transform * new Vector3(max.X, min.Y, min.Z);
+			corners[2] = transform * new Vector3(min.X, max.Y, min.Z);
+			corners[3] = transform * new Vector3(max.X, max.Y, min.Z);
+			corners[4] = transform * new Vector3(min.X, min.Y, max.Z);
+			corners[5] = transform * new Vector3(max.X, min.Y, max.Z);
+			corners[6] = transform * new Vector3(min.X, max.Y, max.Z);
+			corners[7] = transform * new Vector3(max.X, max.Y, max.Z);
+        
+			return corners;
 		}
 	}
 }
