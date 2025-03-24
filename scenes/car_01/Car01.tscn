@@ -46,8 +46,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ow4gn")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.04554, 0)
 shape = SubResource("BoxShape3D_il7yj")
 
-[node name="StateMachine" parent="." index="2" node_paths=PackedStringArray("CurrentState") instance=ExtResource("3_4jn1c")]
-CurrentState = NodePath("ForwardState")
+[node name="StateMachine" parent="." index="2" instance=ExtResource("3_4jn1c")]
 
 [node name="ForwardState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("Car")]
 script = ExtResource("4_wuq25")

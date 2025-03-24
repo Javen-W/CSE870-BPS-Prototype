@@ -11,6 +11,8 @@ namespace CSE849BPSPrototype
 		[Export] public float EngineForceValue = 40.0f;
 		
 		public StateMachine StateMachine;
+		public SubViewport SubViewportRear;
+		public Sprite3D VisualDisplayInterfaceSprite;
 
 		public float SteerTarget;
 		public float PreviousSpeed;
@@ -20,7 +22,11 @@ namespace CSE849BPSPrototype
 		{
 			PreviousSpeed = LinearVelocity.Length();
 			
+			SubViewportRear = GetNode<SubViewport>("Cameras/SubViewportRear");
+			VisualDisplayInterfaceSprite = GetNode<Sprite3D>("VisualDisplayInterface/Sprite3D");
 			StateMachine = GetNode<StateMachine>("StateMachine");
+			
+			StateMachine.TransitionState("ForwardState", null);
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.

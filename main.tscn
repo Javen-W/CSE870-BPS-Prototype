@@ -22,7 +22,7 @@ albedo_color = Color(0.165656, 0.165656, 0.165656, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_q67nt"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_cpih6"]
-viewport_path = NodePath("Car01/Cameras/SubViewport_Rear")
+viewport_path = NodePath("Car01/Cameras/SubViewportRear")
 
 [node name="Main" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0148287, -4.76837e-07, 0.00996423)
@@ -92,23 +92,23 @@ texture = SubResource("ViewportTexture_cpih6")
 [node name="Cameras" type="Node3D" parent="Car01"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.68762, 0)
 
-[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Car01/Cameras"]
-transform = Transform3D(0.999722, -0.000144906, -0.0235869, 0, 0.999981, -0.00614339, 0.0235873, 0.00614168, 0.999703, -0.0555706, 5.54077, -1.72057)
-remote_path = NodePath("../SubViewport_Rear/Camera3D_Rear")
-
-[node name="Camera3D_Inside" type="Camera3D" parent="Car01/Cameras"]
+[node name="Camera3DInside" type="Camera3D" parent="Car01/Cameras"]
 transform = Transform3D(-0.997119, 0.00278221, 0.0758038, 0, 0.999327, -0.0366781, -0.0758549, -0.0365724, -0.996448, 0.337236, 6.02292, -0.247986)
 current = true
 
-[node name="Camera3D_Side" type="Camera3D" parent="Car01/Cameras"]
+[node name="Camera3DSide" type="Camera3D" parent="Car01/Cameras"]
 transform = Transform3D(-0.00174539, -0.835806, 0.549022, 0, 0.549023, 0.835807, -0.999998, 0.00145881, -0.000958257, 6.794, 9.419, 0.141)
 
-[node name="Camera3D_Top" type="Camera3D" parent="Car01/Cameras"]
+[node name="Camera3DTop" type="Camera3D" parent="Car01/Cameras"]
 transform = Transform3D(0.00178256, -0.999998, 0.000796273, 0, 0.000796274, 1, -0.999998, -0.00178256, 1.4194e-06, 0, 9, -1.7)
 
-[node name="SubViewport_Rear" type="SubViewport" parent="Car01/Cameras"]
+[node name="SubViewportRear" type="SubViewport" parent="Car01/Cameras"]
 
-[node name="Camera3D_Rear" type="Camera3D" parent="Car01/Cameras/SubViewport_Rear"]
+[node name="Camera3DRear" type="Camera3D" parent="Car01/Cameras/SubViewportRear"]
 transform = Transform3D(0.999722, -0.000144906, -0.0235869, 0, 0.999981, -0.00614339, 0.0235873, 0.00614168, 0.999703, -0.0703993, 5.54077, -1.71061)
 current = true
 fov = 120.0
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Car01/Cameras"]
+transform = Transform3D(0.999722, -0.000144906, -0.0235869, 0, 0.999981, -0.00614339, 0.0235873, 0.00614168, 0.999703, -0.0555706, 5.54077, -1.72057)
+remote_path = NodePath("../SubViewportRear/Camera3DRear")

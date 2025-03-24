@@ -33,7 +33,8 @@ namespace CSE849BPSPrototype
             }
 
             // enter init state
-            CurrentState.Enter(new Dictionary());
+            if (CurrentState != null)
+                CurrentState.Enter(new Dictionary());
         }
 
         // Analogous to _Process()
@@ -59,7 +60,8 @@ namespace CSE849BPSPrototype
             if (new_state != null && new_state != CurrentState)
             {
                 GD.Print("StateMachine: OnChildTransitioned!");
-                CurrentState.Exit();
+                if (CurrentState != null)
+                    CurrentState.Exit();
                 new_state.Enter(args);
                 CurrentState = new_state;
             }
