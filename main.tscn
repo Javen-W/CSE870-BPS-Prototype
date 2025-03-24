@@ -36,7 +36,46 @@ shadow_enabled = true
 
 [node name="Roads" type="Node3D" parent="."]
 
-[node name="road_straight" parent="Roads" instance=ExtResource("2_34mt6")]
+[node name="RoadStraight1" parent="Roads" instance=ExtResource("2_34mt6")]
+
+[node name="RoadStraight2" parent="Roads" instance=ExtResource("2_34mt6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+
+[node name="RoadStraight3" parent="Roads" instance=ExtResource("2_34mt6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40)
+
+[node name="RoadStraight4" parent="Roads" instance=ExtResource("2_34mt6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 60)
+
+[node name="RoadStraight5" parent="Roads" instance=ExtResource("2_34mt6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 80)
+
+[node name="RoadStraight6" parent="Roads" instance=ExtResource("2_34mt6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100)
+
+[node name="RoadStraight7" parent="Roads" instance=ExtResource("2_34mt6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 120)
+
+[node name="RoadStraight8" parent="Roads" instance=ExtResource("2_34mt6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -140)
+
+[node name="RoadStraight9" parent="Roads" instance=ExtResource("2_34mt6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -120)
+
+[node name="RoadStraight10" parent="Roads" instance=ExtResource("2_34mt6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -100)
+
+[node name="RoadStraight11" parent="Roads" instance=ExtResource("2_34mt6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -80)
+
+[node name="RoadStraight12" parent="Roads" instance=ExtResource("2_34mt6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -60)
+
+[node name="RoadStraight13" parent="Roads" instance=ExtResource("2_34mt6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -40)
+
+[node name="RoadStraight14" parent="Roads" instance=ExtResource("2_34mt6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
 
 [node name="Car01" parent="." instance=ExtResource("2_i76hr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.68762, 0)
