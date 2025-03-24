@@ -13,6 +13,10 @@ namespace CSE849BPSPrototype
 		public StateMachine StateMachine;
 		public SubViewport SubViewportRear;
 		public Sprite3D VisualDisplayInterfaceSprite;
+		public Camera3D CameraInside;
+		public Camera3D CameraSide;
+		public Camera3D CameraTop;
+		public Camera3D CameraRear;
 
 		public float SteerTarget;
 		public float PreviousSpeed;
@@ -22,10 +26,16 @@ namespace CSE849BPSPrototype
 		{
 			PreviousSpeed = LinearVelocity.Length();
 			
+			// init child nodes
 			SubViewportRear = GetNode<SubViewport>("Cameras/SubViewportRear");
 			VisualDisplayInterfaceSprite = GetNode<Sprite3D>("VisualDisplayInterface/Sprite3D");
 			StateMachine = GetNode<StateMachine>("StateMachine");
+			CameraInside = GetNode<Camera3D>("Cameras/Camera3DInside");
+			CameraSide = GetNode<Camera3D>("Cameras/Camera3DSide");
+			CameraTop = GetNode<Camera3D>("Cameras/Camera3DTop");
+			CameraRear = GetNode<Camera3D>("Cameras/SubViewportRear/Camera3DRear");
 			
+			// init state machine state
 			StateMachine.TransitionState("ForwardState", null);
 		}
 

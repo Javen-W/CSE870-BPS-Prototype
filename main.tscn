@@ -78,7 +78,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -40)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
 
 [node name="Car01" parent="." instance=ExtResource("2_i76hr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.68762, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.68762, 0)
 
 [node name="VisualDisplayInterface" type="MeshInstance3D" parent="Car01"]
 transform = Transform3D(0.635, 0, 0, 0, 0.277, 0, 0, 0, 0.039, -0.0996118, 1.19337, 0.616846)
@@ -97,15 +97,15 @@ transform = Transform3D(-0.997119, 0.00278221, 0.0758038, 0, 0.999327, -0.036678
 current = true
 
 [node name="Camera3DSide" type="Camera3D" parent="Car01/Cameras"]
-transform = Transform3D(-0.00174539, -0.835806, 0.549022, 0, 0.549023, 0.835807, -0.999998, 0.00145881, -0.000958257, 6.794, 9.419, 0.141)
+transform = Transform3D(0.00604445, -0.121077, 0.992624, 0, 0.992643, 0.121079, -0.999981, -0.000731857, 0.00599999, 7.67391, 6.52291, -0.402874)
 
 [node name="Camera3DTop" type="Camera3D" parent="Car01/Cameras"]
-transform = Transform3D(0.00178256, -0.999998, 0.000796273, 0, 0.000796274, 1, -0.999998, -0.00178256, 1.4194e-06, 0, 9, -1.7)
+transform = Transform3D(-0.0114456, -0.999768, 0.0182473, 0, 0.0182485, 0.999833, -0.999935, 0.0114437, -0.000208865, 0.15987, 17.3639, -0.0920957)
 
 [node name="SubViewportRear" type="SubViewport" parent="Car01/Cameras"]
 
 [node name="Camera3DRear" type="Camera3D" parent="Car01/Cameras/SubViewportRear"]
-transform = Transform3D(0.999722, -0.000144906, -0.0235869, 0, 0.999981, -0.00614339, 0.0235873, 0.00614168, 0.999703, -0.0703993, 5.54077, -1.71061)
+transform = Transform3D(0.999722, -0.000144906, -0.0235869, 0, 0.999981, -0.00614339, 0.0235873, 0.00614168, 0.999703, -0.0703993, 3.54077, -1.71061)
 current = true
 fov = 120.0
 
