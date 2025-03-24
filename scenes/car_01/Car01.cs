@@ -17,6 +17,7 @@ namespace CSE849BPSPrototype
 		public Camera3D CameraSide;
 		public Camera3D CameraTop;
 		public Camera3D CameraRear;
+		public Node3D CollisionObjects;
 
 		public float SteerTarget;
 		public float PreviousSpeed;
@@ -26,7 +27,7 @@ namespace CSE849BPSPrototype
 		{
 			PreviousSpeed = LinearVelocity.Length();
 			
-			// init child nodes
+			// init reference nodes
 			SubViewportRear = GetNode<SubViewport>("Cameras/SubViewportRear");
 			VisualDisplayInterfaceSprite = GetNode<Sprite3D>("VisualDisplayInterface/Sprite3D");
 			StateMachine = GetNode<StateMachine>("StateMachine");
@@ -34,6 +35,7 @@ namespace CSE849BPSPrototype
 			CameraSide = GetNode<Camera3D>("Cameras/Camera3DSide");
 			CameraTop = GetNode<Camera3D>("Cameras/Camera3DTop");
 			CameraRear = GetNode<Camera3D>("Cameras/SubViewportRear/Camera3DRear");
+			CollisionObjects = GetNode<Node3D>("../CollisionObjects");
 			
 			// init state machine state
 			StateMachine.TransitionState("ForwardState", null);
