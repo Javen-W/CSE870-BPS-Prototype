@@ -10,7 +10,7 @@ namespace CSE849BPSPrototype
 		[Export] public float SteerLimit = 0.4f;
 		[Export] public float BrakeStrength = 2.0f;
 		[Export] public float EngineForceValue = 40.0f;
-		
+ 		
 		public StateMachine StateMachine;
 		public SubViewport SubViewportRear;
 		public Sprite3D VisualDisplayInterfaceSprite;
@@ -69,14 +69,6 @@ namespace CSE849BPSPrototype
 		{
 			Transform3D cameraTransform = camera.GlobalTransform;
 			Vector3 direction = cameraTransform.Origin.DirectionTo(target.GlobalTransform.Origin);
-			float distance = cameraTransform.Origin.DistanceTo(target.GlobalTransform.Origin);
-        
-			// Check if within near and far planes
-			if (distance < camera.Near || distance > camera.Far)
-			{
-				GD.Print($"Distance out of range {distance}");
-				return false;
-			}
 			
 			Vector3 cameraForward = -cameraTransform.Basis.Z.Normalized();
 			float forwardAlignment = cameraForward.Dot(direction);
@@ -116,31 +108,31 @@ namespace CSE849BPSPrototype
 	        {
 	            rect = _targetRects[target];
 	        }
-
-	        float size = 50.0f;
-	        Vector2 screenPos = camera.UnprojectPosition(target.GlobalTransform.Origin);
-	        rect.Position = screenPos - new Vector2(size / 2, size / 2);
-	        rect.Size = new Vector2(size, size);
-
+	        
 			// Use AABB for better bounds
-			/*
-				Aabb aabb = target.GetAabb();
-			   Vector3[] corners = GetAabbCorners(aabb, target.GlobalTransform);
-			   Vector2 minPos = new Vector2(float.MaxValue, float.MaxValue);
-			   Vector2 maxPos = new Vector2(float.MinValue, float.MinValue);
-			   
-			   foreach (Vector3 corner in corners)
-			   {
-			       Vector2 corner2D = camera.UnprojectPosition(corner);
-			       minPos.X = Mathf.Min(minPos.X, corner2D.X);
-			       minPos.Y = Mathf.Min(minPos.Y, corner2D.Y);
-			       maxPos.X = Mathf.Max(maxPos.X, corner2D.X);
-			       maxPos.Y = Mathf.Max(maxPos.Y, corner2D.Y);
-			   }
-			   
-			   rect.Position = minPos;
-			   rect.Size = maxPos - minPos;
-			 */
+			Aabb aabb = target.GetAabb();
+			Vector3[] corners = GetAabbCorners(aabb, target.GlobalTransform);
+			Vector2 minPos = new Vector2(float.MaxValue, float.MaxValue);
+			Vector2 maxPos = new Vector2(float.MinValue, float.MinValue);
+
+			foreach (Vector3 corner in corners)
+			{
+			   Vector2 corner2D = camera.UnprojectPosition(corner);
+			   minPos.X = Mathf.Min(minPos.X, corner2D.X);
+			   minPos.Y = Mathf.Min(minPos.Y, corner2D.Y);
+			   maxPos.X = Mathf.Max(maxPos.X, corner2D.X);
+			   maxPos.Y = Mathf.Max(maxPos.Y, corner2D.Y);
+			}
+
+			rect.Position = minPos;
+			rect.Size = maxPos - minPos;
+			
+			// Interpolate color: Green (distance >= 10) to Red (distance = 0)
+			float distance = camera.GlobalTransform.Origin.DistanceTo(target.GlobalTransform.Origin);
+			float t = Mathf.Clamp(distance / 10f, 0.0f, 1.0f);
+			Color green = Colors.Green;
+			Color red = Colors.Red;
+			rect.BorderColor = green.Lerp(red, 1.0f - t + 0.2f);
 	    }
 		
 		private Vector3[] GetAabbCorners(Aabb aabb, Transform3D transform)
