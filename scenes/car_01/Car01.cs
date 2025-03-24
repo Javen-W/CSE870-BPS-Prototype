@@ -81,34 +81,37 @@ namespace CSE849BPSPrototype
 		
 		private void UpdateTargetRect(Camera3D camera, MeshInstance3D target)
 	    {
-	        // If target isn't in FOV, remove its rect if it exists and return
-	        if (!IsNodeInCameraFov(camera, target))
-	        {
-	            if (_targetRects.ContainsKey(target))
-	            {
-	                _targetRects[target].QueueFree();
-	                _targetRects.Remove(target);
-	            }
-	            return;
-	        }
+			float distance = camera.GlobalTransform.Origin.DistanceTo(target.GlobalTransform.Origin);
+			Vector2 screenPos = camera.UnprojectPosition(target.GlobalTransform.Origin);
 
-	        // Create or get existing ReferenceRect
-	        ReferenceRect rect;
-	        if (!_targetRects.ContainsKey(target))
-	        {
-	            rect = new ReferenceRect();
-	            rect.EditorOnly = false;
-	            rect.BorderColor = Colors.Red;
-	            rect.BorderWidth = 2.0f;
-	            
-	            SubViewportRear.AddChild(rect);
-	            _targetRects[target] = rect;
-	        }
-	        else
-	        {
-	            rect = _targetRects[target];
-	        }
-	        
+			// If target isn't in FOV, remove its rect if it exists and return
+			if (!IsNodeInCameraFov(camera, target))
+			{
+			    if (_targetRects.ContainsKey(target))
+			    {
+			        _targetRects[target].QueueFree();
+			        _targetRects.Remove(target);
+			    }
+			    return;
+			}
+
+			// Create or get existing ReferenceRect
+			ReferenceRect rect;
+			if (!_targetRects.ContainsKey(target))
+			{
+			    rect = new ReferenceRect();
+			    rect.EditorOnly = false;
+			    rect.BorderColor = Colors.Green;
+			    rect.BorderWidth = 4.0f;
+			    
+			    SubViewportRear.AddChild(rect);
+			    _targetRects[target] = rect;
+			}
+			else
+			{
+			    rect = _targetRects[target];
+			}
+
 			// Use AABB for better bounds
 			Aabb aabb = target.GetAabb();
 			Vector3[] corners = GetAabbCorners(aabb, target.GlobalTransform);
@@ -117,18 +120,29 @@ namespace CSE849BPSPrototype
 
 			foreach (Vector3 corner in corners)
 			{
-			   Vector2 corner2D = camera.UnprojectPosition(corner);
-			   minPos.X = Mathf.Min(minPos.X, corner2D.X);
-			   minPos.Y = Mathf.Min(minPos.Y, corner2D.Y);
-			   maxPos.X = Mathf.Max(maxPos.X, corner2D.X);
-			   maxPos.Y = Mathf.Max(maxPos.Y, corner2D.Y);
+			    Vector2 corner2D = camera.UnprojectPosition(corner);
+			    minPos.X = Mathf.Min(minPos.X, corner2D.X);
+			    minPos.Y = Mathf.Min(minPos.Y, corner2D.Y);
+			    maxPos.X = Mathf.Max(maxPos.X, corner2D.X);
+			    maxPos.Y = Mathf.Max(maxPos.Y, corner2D.Y);
 			}
 
-			rect.Position = minPos;
-			rect.Size = maxPos - minPos;
-			
+			// Calculate original size and position
+			Vector2 originalSize = maxPos - minPos;
+			Vector2 originalCenter = minPos + (originalSize / 2.0f);
+
+			Vector2 shrunkSize = originalSize * 0.75f;
+			rect.Position = originalCenter - (shrunkSize / 2.0f);
+			rect.Size = shrunkSize;
+
+			/*
+			   // Set position and size (simple fixed-size version)
+			   float size = 200.0f;
+			   rect.Position = screenPos - new Vector2(size / 2, size / 2);
+			   rect.Size = new Vector2(size, size);
+			*/
+
 			// Interpolate color: Green (distance >= 10) to Red (distance = 0)
-			float distance = camera.GlobalTransform.Origin.DistanceTo(target.GlobalTransform.Origin);
 			float t = Mathf.Clamp(distance / 10f, 0.0f, 1.0f);
 			Color green = Colors.Green;
 			Color red = Colors.Red;

@@ -17,7 +17,7 @@ namespace CSE849BPSPrototype
 		{
 			GD.Print("Entered ForwardState");
 
-			Car.VisualDisplayInterfaceSprite.Visible = false;
+			// Car.VisualDisplayInterfaceSprite.Visible = false;
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
