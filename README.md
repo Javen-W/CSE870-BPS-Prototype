@@ -1,2 +1,2 @@
-# CSE849-BPS-Prototype
-A prototype animation for the CSE849 Adv. Software Engineering Backover Prevention System (BPS) project.
+# CSE870-BPS-Prototype
+A prototype demonstration for the CSE870 Adv. Software Engineering Backover Prevention System (BPS) project, made in the Godot engine. 
