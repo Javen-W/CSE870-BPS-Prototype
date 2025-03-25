@@ -23,11 +23,8 @@ albedo_color = Color(1, 1, 1, 0)
 size = Vector3(2.055, 1.525, 3.21)
 
 [node name="Car01" instance=ExtResource("1_yiem6")]
-mass = 200.0
 script = ExtResource("2_a6s4r")
-SteerSpeed = 20.0
-SteerLimit = 0.8
-EngineForceValue = 10.0
+SteerLimit = 0.6
 
 [node name="car body" parent="." index="0"]
 transform = Transform3D(100, 0, 0, 0, -4.37114e-06, 100, 0, -100, -4.37114e-06, 0, 0, 0.0804537)
@@ -57,39 +54,35 @@ script = ExtResource("5_qlskt")
 Car = NodePath("../..")
 
 [node name="Wheel1" type="VehicleWheel3D" parent="." index="3"]
-transform = Transform3D(1.66663, 0, 0, 0, 1, 0, 0, 0, 1.30638, 0.956108, 0.155903, 1.15734)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2.03988, 0.946071, 0.378456, 1.18192)
 use_as_traction = true
 use_as_steering = true
-wheel_roll_influence = 0.4
+wheel_roll_influence = 1.0
 wheel_radius = 0.18
 wheel_friction_slip = 1.0
-suspension_stiffness = 30.0
-damping_compression = 0.88
+suspension_stiffness = 10.0
 
 [node name="Wheel2" type="VehicleWheel3D" parent="." index="4"]
-transform = Transform3D(1.66663, 0, 0, 0, 1, 0, 0, 0, 1.30638, 0.956108, 0.155903, -1.30854)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2.03988, 0.946071, 0.378456, -1.33312)
 use_as_traction = true
-wheel_roll_influence = 0.4
+wheel_roll_influence = 1.0
 wheel_radius = 0.18
 wheel_friction_slip = 1.0
-suspension_stiffness = 30.0
-damping_compression = 0.88
+suspension_stiffness = 10.0
 
 [node name="Wheel3" type="VehicleWheel3D" parent="." index="5"]
-transform = Transform3D(1.66663, 0, 0, 0, 1, 0, 0, 0, 1.30638, -0.956108, 0.155903, 1.15734)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2.03988, -0.946071, 0.378456, 1.18192)
 use_as_traction = true
 use_as_steering = true
-wheel_roll_influence = 0.4
+wheel_roll_influence = 1.0
 wheel_radius = 0.18
 wheel_friction_slip = 1.0
-suspension_stiffness = 30.0
-damping_compression = 0.88
+suspension_stiffness = 10.0
 
 [node name="Wheel4" type="VehicleWheel3D" parent="." index="6"]
-transform = Transform3D(1.66663, 0, 0, 0, 1, 0, 0, 0, 1.30638, -0.956108, 0.155903, -1.30854)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2.03988, -0.946071, 0.378456, -1.33312)
 use_as_traction = true
-wheel_roll_influence = 0.4
+wheel_roll_influence = 1.0
 wheel_radius = 0.18
 wheel_friction_slip = 1.0
-suspension_stiffness = 30.0
-damping_compression = 0.88
+suspension_stiffness = 10.0
