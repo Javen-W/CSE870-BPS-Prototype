@@ -1,6 +1,6 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSE849 BPS Prototype", "CSE849 BPS Prototype.csproj", "{DC0905B7-0FF6-4FE6-AFA6-CCB132B03377}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSE870 BPS Prototype", "CSE870 BPS Prototype.csproj", "{DC0905B7-0FF6-4FE6-AFA6-CCB132B03377}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

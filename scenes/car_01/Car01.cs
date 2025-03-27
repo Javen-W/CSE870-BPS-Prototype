@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-namespace CSE849BPSPrototype
+namespace CSE870BPSPrototype
 {
 	public partial class Car01 : VehicleBody3D
 	{

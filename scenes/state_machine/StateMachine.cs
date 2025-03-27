@@ -3,7 +3,7 @@ using Godot.Collections;
 using System;
 //using System.Collections.Generic;
 
-namespace CSE849BPSPrototype
+namespace CSE870BPSPrototype
 {
     public partial class StateMachine : Node
     {
