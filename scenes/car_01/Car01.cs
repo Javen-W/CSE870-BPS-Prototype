@@ -19,6 +19,7 @@ namespace CSE870BPSPrototype
 		public Camera3D CameraTop;
 		public Camera3D CameraRear;
 		public Node3D CollisionObjects;
+		public Area3D ProximitySensorArray;
 
 		public float SteerTarget;
 		public float PreviousSpeed;
@@ -38,6 +39,7 @@ namespace CSE870BPSPrototype
 			CameraTop = GetNode<Camera3D>("Cameras/Camera3DTop");
 			CameraRear = GetNode<Camera3D>("Cameras/SubViewportRear/Camera3DRear");
 			CollisionObjects = GetNode<Node3D>("../CollisionObjects");
+			ProximitySensorArray = GetNode<Area3D>("ProximitySensorArray");
 			
 			// init state machine state
 			StateMachine.TransitionState("ForwardState", null);
