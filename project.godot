@@ -15,6 +15,10 @@ run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+UiSignalBus="*res://globals/UISignalBus.cs"
+
 [dotnet]
 
 project/assembly_name="CSE870 BPS Prototype"

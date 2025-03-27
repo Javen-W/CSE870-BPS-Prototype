@@ -1,17 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://byrdlcw7ro6w7"]
+[gd_scene load_steps=13 format=3 uid="uid://byrdlcw7ro6w7"]
 
+[ext_resource type="PackedScene" uid="uid://c2wmdb807f6h0" path="res://scenes/UI/ControlUI.tscn" id="1_ntsfm"]
 [ext_resource type="PackedScene" uid="uid://bmtig2uu2p4vi" path="res://scenes/roads/RoadStraight.tscn" id="2_34mt6"]
 [ext_resource type="PackedScene" uid="uid://codyys3sikh3v" path="res://scenes/car_01/Car01.tscn" id="2_i76hr"]
-
-[sub_resource type="Gradient" id="Gradient_2gh0l"]
-offsets = PackedFloat32Array(0, 0.61435, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.556054, 0.556054, 0.556054, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_876e0"]
-gradient = SubResource("Gradient_2gh0l")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6v0m5"]
-texture = SubResource("GradientTexture2D_876e0")
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e3nxo"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -47,93 +38,7 @@ radius = 1.0
 [node name="Main" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0148287, -4.76837e-07, 0.00996423)
 
-[node name="ControlUI" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 10
-anchor_right = 1.0
-grow_horizontal = 2
-size_flags_horizontal = 3
-
-[node name="Panel" type="Panel" parent="ControlUI"]
-modulate = Color(1, 1, 1, 0.447059)
-top_level = true
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_6v0m5")
-
-[node name="MarginContainer" type="MarginContainer" parent="ControlUI/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 15
-
-[node name="HBoxContainer" type="HBoxContainer" parent="ControlUI/Panel/MarginContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="ControlUI/Panel/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ControlUI/Panel/MarginContainer/HBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="GearLabel" type="Label" parent="ControlUI/Panel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Gear: {}"
-
-[node name="VelocityLabel" type="Label" parent="ControlUI/Panel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Velocity: {}"
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="ControlUI/Panel/MarginContainer/HBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="AcceleratingLabel" type="Label" parent="ControlUI/Panel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Accelerating: {}"
-
-[node name="BrakingLabel" type="Label" parent="ControlUI/Panel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Braking: {}"
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="ControlUI/Panel/MarginContainer/HBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="CameraLabel" type="Label" parent="ControlUI/Panel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Camera: {}"
-
-[node name="ScenarioLabel" type="Label" parent="ControlUI/Panel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Scenario: {}"
-
-[node name="VSeparator" type="VSeparator" parent="ControlUI/Panel/MarginContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="ControlUI/Panel/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
+[node name="ControlUI" parent="." instance=ExtResource("1_ntsfm")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_iefr7")

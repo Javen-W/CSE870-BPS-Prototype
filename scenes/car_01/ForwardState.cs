@@ -18,6 +18,7 @@ namespace CSE870BPSPrototype
 			GD.Print("Entered ForwardState");
 
 			Car.VisualDisplayInterfaceSprite.Visible = false;
+			UISignalBus.EmitGearChanged("Forward");
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -18,6 +18,7 @@ namespace CSE870BPSPrototype
             GD.Print("Entered ReverseState");
             
             Car.VisualDisplayInterfaceSprite.Visible = true;
+            UISignalBus.EmitGearChanged("Reverse");
         }
 
         // Called every frame. 'delta' is the elapsed time since the previous frame.
