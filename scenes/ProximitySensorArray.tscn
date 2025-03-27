@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/ProximitySensorArray.cs" id="1_2jny2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_78hq4"]
-size = Vector3(1.69, 1.345, 2.285)
+size = Vector3(1.69, 1.345, 6.645)
 
 [node name="ProximitySensorArray" type="Area3D"]
 collision_layer = 0

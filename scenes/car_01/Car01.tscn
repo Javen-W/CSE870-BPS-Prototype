@@ -91,3 +91,4 @@ wheel_friction_slip = 1.0
 suspension_stiffness = 10.0
 
 [node name="ProximitySensorArray" parent="." index="7" instance=ExtResource("6_klube")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.25616)

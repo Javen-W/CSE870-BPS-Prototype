@@ -23,6 +23,19 @@ namespace CSE870BPSPrototype
         // Called every frame. 'delta' is the elapsed time since the previous frame.
         public override void PhysicsUpdate(double delta)
         {
+            // object distance calculations
+            foreach (var obj in Car.CollisionObjects.GetChildren())
+            {
+                var objBody = obj as StaticBody3D;
+                var isDetected = Car.ProximitySensorArray.DetectedObjects.Contains(objBody);
+                if (isDetected)
+                {
+                    var objMesh = obj.GetChild(0) as MeshInstance3D;
+                    float distance = Car.CameraRear.GlobalTransform.Origin.DistanceTo(objMesh.GlobalTransform.Origin);
+                    GD.Print("Distance: " + distance);
+                }
+            }
+            
             if (Input.IsActionPressed("accelerate"))
             {
                 var speed = Car.LinearVelocity.Length();

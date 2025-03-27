@@ -21,13 +21,13 @@ namespace CSE870BPSPrototype
 
 		private void OnBodyEntered(Node body)
 		{
-			DetectedObjects.Add(body as Node3D);
+			DetectedObjects.Add(body as StaticBody3D);
 			GD.Print($"ProximitySensorArray: detected_objs={DetectedObjects.Count}");
 		}
 
 		private void OnBodyExited(Node body)
 		{
-			DetectedObjects.Remove(body as Node3D);
+			DetectedObjects.Remove(body as StaticBody3D);
 			GD.Print($"ProximitySensorArray: detected_objs={DetectedObjects.Count}");
 		}
 	}
