@@ -10,6 +10,7 @@ namespace CSE870BPSPrototype
 		[Export] public float SteerLimit = 0.4f;
 		[Export] public float BrakeStrength = 2.0f;
 		[Export] public float EngineForceValue = 40.0f;
+		[Export] public Node3D CollisionObjects {get; set;}
  		
 		public StateMachine StateMachine;
 		public SubViewport SubViewportRear;
@@ -18,7 +19,6 @@ namespace CSE870BPSPrototype
 		public Camera3D CameraSide;
 		public Camera3D CameraTop;
 		public Camera3D CameraRear;
-		public Node3D CollisionObjects;
 		public ProximitySensorArray ProximitySensorArray;
 
 		public float SteerTarget;
@@ -38,7 +38,6 @@ namespace CSE870BPSPrototype
 			CameraSide = GetNode<Camera3D>("Cameras/Camera3DSide");
 			CameraTop = GetNode<Camera3D>("Cameras/Camera3DTop");
 			CameraRear = GetNode<Camera3D>("Cameras/SubViewportRear/Camera3DRear");
-			CollisionObjects = GetNode<Node3D>("../CollisionObjects");
 			ProximitySensorArray = GetNode<ProximitySensorArray>("ProximitySensorArray");
 			
 			// init state machine state
