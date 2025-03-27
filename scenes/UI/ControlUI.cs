@@ -35,6 +35,7 @@ namespace CSE870BPSPrototype
 			// Handle signals
 			UISignalBus.Instance.GearChanged += OnGearChanged;
 			UISignalBus.Instance.VelocityChanged += OnVelocityChanged;
+			UISignalBus.Instance.ObjectChanged += OnObjectChanged;
 		}
 
 		private void OnGearChanged(string gear)
@@ -45,6 +46,12 @@ namespace CSE870BPSPrototype
 		private void OnVelocityChanged(float velocity)
 		{
 			VelocityLabel.Text = $"Velocity: {velocity:F3}";
+		}
+
+		private void OnObjectChanged(StaticBody3D obj, float distance, bool proximity)
+		{
+			ObjectPanels[obj].DistanceLabel.Text = $"Distance: {distance:F3}";
+			ObjectPanels[obj].ProximityLabel.Text = $"Proximity: {proximity}";
 		}
 	}
 }

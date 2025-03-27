@@ -29,6 +29,7 @@ namespace CSE870BPSPrototype
 		public override void _Ready()
 		{
 			PreviousSpeed = LinearVelocity.Length();
+			_targetRects = new Dictionary<Node3D, ReferenceRect>();
 			
 			// init reference nodes
 			SubViewportRear = GetNode<SubViewport>("Cameras/SubViewportRear");
@@ -40,10 +41,8 @@ namespace CSE870BPSPrototype
 			CameraRear = GetNode<Camera3D>("Cameras/SubViewportRear/Camera3DRear");
 			ProximitySensorArray = GetNode<ProximitySensorArray>("ProximitySensorArray");
 			
-			// init state machine state
+			// init state machine
 			StateMachine.TransitionState("ForwardState", null);
-			
-			_targetRects = new Dictionary<Node3D, ReferenceRect>();
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -59,11 +58,18 @@ namespace CSE870BPSPrototype
 			PreviousSpeed = LinearVelocity.Length();
 			UISignalBus.EmitVelocityChanged(PreviousSpeed);
 			
-			// object highlighting
+			// object highlighting & sensor calculations
 			foreach (var obj in CollisionObjects.GetChildren())
 			{
+				// update reference rectangles
 				var objMesh = obj.GetChild(0) as MeshInstance3D;
 				UpdateTargetRect(CameraRear, objMesh);
+				
+				// update UI
+				var objBody = obj as StaticBody3D;
+				float distance = CameraRear.GlobalTransform.Origin.DistanceTo(objMesh.GlobalTransform.Origin);
+				var proximity = ProximitySensorArray.DetectedObjects.Contains(objBody);
+				UISignalBus.EmitObjectChangedEvent(objBody, distance, proximity);
 			}
 		}
 		
