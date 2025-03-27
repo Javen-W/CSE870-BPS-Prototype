@@ -58,6 +58,7 @@ namespace CSE870BPSPrototype
 			
 			Steering = (float) Mathf.MoveToward(Steering, SteerTarget, SteerSpeed * delta);
 			PreviousSpeed = LinearVelocity.Length();
+			UISignalBus.EmitVelocityChanged(PreviousSpeed);
 			
 			// object highlighting
 			foreach (var obj in CollisionObjects.GetChildren())

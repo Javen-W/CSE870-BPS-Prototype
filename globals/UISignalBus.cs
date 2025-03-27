@@ -6,10 +6,17 @@ namespace CSE870BPSPrototype
 	public partial class UISignalBus : Node
 	{
 		[Signal] public delegate void GearChangedEventHandler(string gear);
+		
+		[Signal] public delegate void VelocityChangedEventHandler(float velocity);
 	
 		public static void EmitGearChanged(string gear)
 		{
 			Instance.EmitSignal(nameof(GearChanged), gear);
+		}
+
+		public static void EmitVelocityChanged(float velocity)
+		{
+			Instance.EmitSignal(nameof(VelocityChanged), velocity);
 		}
 		
 		public static UISignalBus Instance { get; set; }

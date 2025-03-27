@@ -33,7 +33,6 @@ namespace CSE870BPSPrototype
                 {
                     var objMesh = obj.GetChild(0) as MeshInstance3D;
                     float distance = Car.CameraRear.GlobalTransform.Origin.DistanceTo(objMesh.GlobalTransform.Origin);
-                    GD.Print("Distance: " + distance);
                 }
             }
             
