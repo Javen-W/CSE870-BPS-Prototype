@@ -48,8 +48,11 @@ namespace CSE870BPSPrototype
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
 		public override void _PhysicsProcess(double delta)
 		{
+			// common physics operations
 			SteerTarget = Input.GetAxis("turn_right", "turn_left");
 			SteerTarget *= SteerLimit;
+			UISignalBus.EmitAcceleratingPressedEvent(Input.IsActionPressed("accelerate"));
+			UISignalBus.EmitBrakingPressedEvent(Input.IsActionPressed("reverse"));
 			
 			// process state machine
 			StateMachine.PhysicsUpdate(delta);

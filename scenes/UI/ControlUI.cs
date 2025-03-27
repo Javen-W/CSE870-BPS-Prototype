@@ -10,6 +10,8 @@ namespace CSE870BPSPrototype
 
 		private Label GearLabel;
 		private Label VelocityLabel;
+		private Label AcceleratingLabel;
+		private Label BrakingLabel;
 		private HBoxContainer ObjectPanelContainer;
 		private Dictionary<StaticBody3D, ObjectPanel> ObjectPanels;
 		
@@ -19,6 +21,8 @@ namespace CSE870BPSPrototype
 			// Init node references
 			GearLabel = GetNode<Label>("Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/GearLabel");
 			VelocityLabel = GetNode<Label>("Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/VelocityLabel");
+			AcceleratingLabel = GetNode<Label>("Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/AcceleratingLabel");
+			BrakingLabel = GetNode<Label>("Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/BrakingLabel");
 			ObjectPanelContainer = GetNode<HBoxContainer>("Panel/MarginContainer/HBoxContainer/ObjectPanelContainer");
 			ObjectPanels = new Dictionary<StaticBody3D, ObjectPanel>();
 			
@@ -36,6 +40,8 @@ namespace CSE870BPSPrototype
 			UISignalBus.Instance.GearChanged += OnGearChanged;
 			UISignalBus.Instance.VelocityChanged += OnVelocityChanged;
 			UISignalBus.Instance.ObjectChanged += OnObjectChanged;
+			UISignalBus.Instance.AcceleratingPressed += OnAcceleratingPressed;
+			UISignalBus.Instance.BrakingPressed += OnBrakingPressed;
 		}
 
 		private void OnGearChanged(string gear)
@@ -52,6 +58,16 @@ namespace CSE870BPSPrototype
 		{
 			ObjectPanels[obj].DistanceLabel.Text = $"Distance: {distance:F3}";
 			ObjectPanels[obj].ProximityLabel.Text = $"Proximity: {proximity}";
+		}
+
+		private void OnAcceleratingPressed(bool accelerating)
+		{
+			AcceleratingLabel.Text = $"Accelerating: {accelerating}";
+		}
+
+		private void OnBrakingPressed(bool braking)
+		{
+			BrakingLabel.Text = $"Braking: {braking}";
 		}
 	}
 }

@@ -10,6 +10,10 @@ namespace CSE870BPSPrototype
 		[Signal] public delegate void VelocityChangedEventHandler(float velocity);
 		
 		[Signal] public delegate void ObjectChangedEventHandler(StaticBody3D obj, float distance, bool proximity);
+		
+		[Signal] public delegate void AcceleratingPressedEventHandler(bool accelerating);
+		
+		[Signal] public delegate void BrakingPressedEventHandler(bool braking);
 	
 		public static void EmitGearChanged(string gear)
 		{
@@ -24,6 +28,16 @@ namespace CSE870BPSPrototype
 		public static void EmitObjectChangedEvent(StaticBody3D obj, float distance, bool proximity)
 		{
 			Instance.EmitSignal(nameof(ObjectChanged), obj, distance, proximity);
+		}
+
+		public static void EmitAcceleratingPressedEvent(bool accelerating)
+		{
+			Instance.EmitSignal(nameof(AcceleratingPressed), accelerating);
+		}
+
+		public static void EmitBrakingPressedEvent(bool braking)
+		{
+			Instance.EmitSignal(nameof(BrakingPressed), braking);
 		}
 		
 		public static UISignalBus Instance { get; set; }
