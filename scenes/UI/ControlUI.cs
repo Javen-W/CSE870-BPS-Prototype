@@ -17,9 +17,9 @@ namespace CSE870BPSPrototype
 		public override void _Ready()
 		{
 			// Init node references
-			GearLabel = GetNode<Label>("Panel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/GearLabel");
-			VelocityLabel = GetNode<Label>("Panel/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/VelocityLabel");
-			ObjectPanelContainer = GetNode<HBoxContainer>("Panel/MarginContainer/HBoxContainer/HBoxContainer2");
+			GearLabel = GetNode<Label>("Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/GearLabel");
+			VelocityLabel = GetNode<Label>("Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/VelocityLabel");
+			ObjectPanelContainer = GetNode<HBoxContainer>("Panel/MarginContainer/HBoxContainer/ObjectPanelContainer");
 			ObjectPanels = new Dictionary<StaticBody3D, ObjectPanel>();
 			
 			// Init object panels
