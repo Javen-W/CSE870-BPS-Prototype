@@ -21,24 +21,34 @@ namespace CSE870BPSPrototype
         }
 
         // Called every frame. 'delta' is the elapsed time since the previous frame.
-        public override void _PhysicsProcess(double delta)
+        public override void PhysicsUpdate(double delta)
         {
-            if (Input.IsActionPressed("reverse"))
+            if (Input.IsActionPressed("accelerate"))
             {
                 var speed = Car.LinearVelocity.Length();
-                if (speed < 5.0 && speed > 0.01)
+                if (speed < 2.5 && speed > 0.01)
                 {
-                    Car.EngineForce = -Mathf.Clamp(Car.EngineForceValue * Car.BrakeStrength * 5.0f / speed, 0.0f, 100.0f);
+                    Car.EngineForce = -Mathf.Clamp(Car.EngineForceValue * Car.BrakeStrength * 2.5f / speed, 0.0f, 100.0f);
                 }
                 else
                 {
-                    Car.EngineForce = -Car.EngineForceValue * Car.BrakeStrength;
+                    Car.EngineForce = -Car.EngineForceValue * Car.BrakeStrength * 0.5f;
                 }
                 
-                Car.EngineForce *= Input.GetActionStrength("reverse");
+                Car.EngineForce *= Input.GetActionStrength("accelerate");
+            }
+            else
+            {
+                Car.EngineForce = 0.0f;
             }
 
-            if (Input.IsActionJustPressed("accelerate"))
+            if (Input.IsActionPressed("reverse"))
+            {
+                Car.EngineForce = 0.0f;
+                Car.Brake = 15f;
+            }
+            
+            if (Input.IsActionJustPressed("shift_gear"))
             {
                 EmitSignal(nameof(Transitioned), "ForwardState", new Dictionary());
             }

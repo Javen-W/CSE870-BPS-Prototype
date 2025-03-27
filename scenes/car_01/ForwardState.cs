@@ -17,11 +17,11 @@ namespace CSE870BPSPrototype
 		{
 			GD.Print("Entered ForwardState");
 
-			// Car.VisualDisplayInterfaceSprite.Visible = false;
+			Car.VisualDisplayInterfaceSprite.Visible = false;
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
-		public override void _PhysicsProcess(double delta)
+		public override void PhysicsUpdate(double delta)
 		{
 			if (Input.IsActionPressed("accelerate"))
 			{
@@ -41,8 +41,14 @@ namespace CSE870BPSPrototype
 			{
 				Car.EngineForce = 0.0f;
 			}
-
-			if (Input.IsActionJustPressed("reverse"))
+			
+			if (Input.IsActionPressed("reverse"))
+			{
+				Car.EngineForce = 0.0f;
+				Car.Brake = 15f;
+			}
+			
+			if (Input.IsActionJustPressed("shift_gear"))
 			{
 				EmitSignal(nameof(Transitioned), "ReverseState", new Dictionary());
 			}

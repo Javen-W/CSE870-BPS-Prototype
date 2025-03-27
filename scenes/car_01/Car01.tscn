@@ -25,6 +25,7 @@ size = Vector3(2.055, 1.525, 3.21)
 [node name="Car01" instance=ExtResource("1_yiem6")]
 script = ExtResource("2_a6s4r")
 SteerLimit = 0.6
+EngineForceValue = 60.0
 
 [node name="car body" parent="." index="0"]
 transform = Transform3D(100, 0, 0, 0, -4.37114e-06, 100, 0, -100, -4.37114e-06, 0, 0, 0.0804537)
