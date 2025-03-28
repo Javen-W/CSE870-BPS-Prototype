@@ -33,9 +33,10 @@ viewport_path = NodePath("Cameras/SubViewportRear")
 
 [node name="Car01" instance=ExtResource("1_yiem6")]
 collision_mask = 3
+mass = 100.0
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, 0.4, 0)
 script = ExtResource("2_a6s4r")
-SteerLimit = 0.6
-EngineForceValue = 60.0
 
 [node name="car body" parent="." index="0"]
 transform = Transform3D(100, 0, 0, 0, -4.37114e-06, 100, 0, -100, -4.37114e-06, 0, 0, 0.0804537)
@@ -65,38 +66,38 @@ script = ExtResource("5_qlskt")
 Car = NodePath("../..")
 
 [node name="Wheel1" type="VehicleWheel3D" parent="." index="3"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2.03988, 0.946071, 0.378456, 1.18192)
+transform = Transform3D(1.20514, 0, 0, 0, 1, 0, 0, 0, 1, 1.14015, 0.41738, 1.12409)
 use_as_traction = true
 use_as_steering = true
 wheel_roll_influence = 1.0
-wheel_radius = 0.18
+wheel_radius = 0.3
 wheel_friction_slip = 1.0
-suspension_stiffness = 10.0
+suspension_stiffness = 25.0
 
 [node name="Wheel2" type="VehicleWheel3D" parent="." index="4"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2.03988, 0.946071, 0.378456, -1.33312)
+transform = Transform3D(1.20514, 0, 0, 0, 1, 0, 0, 0, 1, 1.14015, 0.41738, -1.15527)
 use_as_traction = true
 wheel_roll_influence = 1.0
-wheel_radius = 0.18
+wheel_radius = 0.3
 wheel_friction_slip = 1.0
-suspension_stiffness = 10.0
+suspension_stiffness = 25.0
 
 [node name="Wheel3" type="VehicleWheel3D" parent="." index="5"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2.03988, -0.946071, 0.378456, 1.18192)
+transform = Transform3D(1.20514, 0, 0, 0, 1, 0, 0, 0, 1, -1.14015, 0.41738, 1.12409)
 use_as_traction = true
 use_as_steering = true
 wheel_roll_influence = 1.0
-wheel_radius = 0.18
+wheel_radius = 0.3
 wheel_friction_slip = 1.0
-suspension_stiffness = 10.0
+suspension_stiffness = 25.0
 
 [node name="Wheel4" type="VehicleWheel3D" parent="." index="6"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2.03988, -0.946071, 0.378456, -1.33312)
+transform = Transform3D(1.20514, 0, 0, 0, 1, 0, 0, 0, 1, -1.14015, 0.41738, -1.15527)
 use_as_traction = true
 wheel_roll_influence = 1.0
-wheel_radius = 0.18
+wheel_radius = 0.3
 wheel_friction_slip = 1.0
-suspension_stiffness = 10.0
+suspension_stiffness = 25.0
 
 [node name="ProximitySensorArray" parent="." index="7" instance=ExtResource("6_klube")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.25616)
