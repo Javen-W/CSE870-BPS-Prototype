@@ -6,13 +6,13 @@ namespace CSE870BPSPrototype
 {
 	public partial class ProximitySensorArray : Area3D
 	{
-		public List<Node3D> DetectedObjects;
+		public List<StaticBody3D> DetectedObjects;
 		
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
 			GD.Print("ProximitySensorArray Ready()");
-			DetectedObjects = new List<Node3D>();
+			DetectedObjects = new List<StaticBody3D>();
 		
 			// init signal connections
 			BodyEntered += OnBodyEntered;

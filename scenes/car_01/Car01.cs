@@ -75,16 +75,21 @@ namespace CSE870BPSPrototype
 				
 				// update UI
 				var objBody = obj as StaticBody3D;
-				var distance = CameraRear.GlobalTransform.Origin.DistanceTo(objMesh.GlobalTransform.Origin);
-				var proximity = IsObjectInProximity(objBody);
+				var distance = CalculateObjectDistance(objMesh);
+				var proximity = IsObjectInProximity(objBody, objMesh);
 				UISignalBus.EmitObjectChangedEvent(objBody, distance, proximity);
 			}
 		}
 
-		private bool IsObjectInProximity(StaticBody3D obj)
+		private float CalculateObjectDistance(MeshInstance3D objMesh)
 		{
-			var inSensor = ProximitySensorArray.DetectedObjects.Contains(obj);
-			var inFov = IsNodeInCameraFov(CameraRear, obj);
+			return CameraRear.GlobalTransform.Origin.DistanceTo(objMesh.GlobalTransform.Origin);
+		}
+
+		private bool IsObjectInProximity(StaticBody3D objBody,  MeshInstance3D objMesh)
+		{
+			var inSensor = ProximitySensorArray.DetectedObjects.Contains(objBody);
+			var inFov = IsObjectInCameraFov(CameraRear, objMesh);
 			return inSensor || inFov;
 		}
 
@@ -109,10 +114,10 @@ namespace CSE870BPSPrototype
 			}
 		}
 		
-		private bool IsNodeInCameraFov(Camera3D camera, Node3D target)
+		private bool IsObjectInCameraFov(Camera3D camera, MeshInstance3D objMesh)
 		{
 			Transform3D cameraTransform = camera.GlobalTransform;
-			Vector3 direction = cameraTransform.Origin.DirectionTo(target.GlobalTransform.Origin);
+			Vector3 direction = cameraTransform.Origin.DirectionTo(objMesh.GlobalTransform.Origin);
 			
 			Vector3 cameraForward = -cameraTransform.Basis.Z.Normalized();
 			float forwardAlignment = cameraForward.Dot(direction);
@@ -123,25 +128,25 @@ namespace CSE870BPSPrototype
 			return fovAngle <= fovRadians && forwardAlignment > 0;
 		}
 		
-		private void UpdateTargetRect(Camera3D camera, MeshInstance3D target)
-	    {
-			float distance = camera.GlobalTransform.Origin.DistanceTo(target.GlobalTransform.Origin);
-			Vector2 screenPos = camera.UnprojectPosition(target.GlobalTransform.Origin);
+		private void UpdateTargetRect(Camera3D camera, MeshInstance3D objMesh)
+		{
+			// Vector2 screenPos = camera.UnprojectPosition(objMesh.GlobalTransform.Origin);
+			float distance = CalculateObjectDistance(objMesh);
 
 			// If target isn't in FOV, remove its rect if it exists and return
-			if (!IsNodeInCameraFov(camera, target))
+			if (!IsObjectInCameraFov(camera, objMesh))
 			{
-			    if (_targetRects.ContainsKey(target))
+			    if (_targetRects.ContainsKey(objMesh))
 			    {
-			        _targetRects[target].QueueFree();
-			        _targetRects.Remove(target);
+			        _targetRects[objMesh].QueueFree();
+			        _targetRects.Remove(objMesh);
 			    }
 			    return;
 			}
 
 			// Create or get existing ReferenceRect
 			ReferenceRect rect;
-			if (!_targetRects.ContainsKey(target))
+			if (!_targetRects.ContainsKey(objMesh))
 			{
 			    rect = new ReferenceRect();
 			    rect.EditorOnly = false;
@@ -149,16 +154,16 @@ namespace CSE870BPSPrototype
 			    rect.BorderWidth = 4.0f;
 			    
 			    SubViewportRear.AddChild(rect);
-			    _targetRects[target] = rect;
+			    _targetRects[objMesh] = rect;
 			}
 			else
 			{
-			    rect = _targetRects[target];
+			    rect = _targetRects[objMesh];
 			}
 
 			// Use AABB for better bounds
-			Aabb aabb = target.GetAabb();
-			Vector3[] corners = GetAabbCorners(aabb, target.GlobalTransform);
+			Aabb aabb = objMesh.GetAabb();
+			Vector3[] corners = GetAabbCorners(aabb, objMesh.GlobalTransform);
 			Vector2 minPos = new Vector2(float.MaxValue, float.MaxValue);
 			Vector2 maxPos = new Vector2(float.MinValue, float.MinValue);
 
