@@ -14,6 +14,8 @@ namespace CSE870BPSPrototype
 		[Signal] public delegate void AcceleratingPressedEventHandler(bool accelerating);
 		
 		[Signal] public delegate void BrakingPressedEventHandler(bool braking);
+		
+		[Signal] public delegate void CameraCycledEventHandler(string camera);
 	
 		public static void EmitGearChanged(string gear)
 		{
@@ -38,6 +40,11 @@ namespace CSE870BPSPrototype
 		public static void EmitBrakingPressedEvent(bool braking)
 		{
 			Instance.EmitSignal(nameof(BrakingPressed), braking);
+		}
+		
+		public static void EmitCameraCycled(string camera)
+		{
+			Instance.EmitSignal(nameof(CameraCycled), camera);
 		}
 		
 		public static UISignalBus Instance { get; set; }

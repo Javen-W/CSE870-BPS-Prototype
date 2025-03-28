@@ -133,7 +133,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
-text = "Camera ()"
+text = "Camera (V)"
 
 [node name="Label2" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2"]
 layout_mode = 2

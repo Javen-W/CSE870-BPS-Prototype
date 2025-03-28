@@ -23,14 +23,13 @@ namespace CSE870BPSPrototype
 
 		public float SteerTarget;
 		public float PreviousSpeed;
+		
 		private Dictionary<Node3D, ReferenceRect> _targetRects;
+		private int _cameraIndex = 0;
 		
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
-			PreviousSpeed = LinearVelocity.Length();
-			_targetRects = new Dictionary<Node3D, ReferenceRect>();
-			
 			// init reference nodes
 			SubViewportRear = GetNode<SubViewport>("Cameras/SubViewportRear");
 			VisualDisplayInterfaceSprite = GetNode<Sprite3D>("VisualDisplayInterface/Sprite3D");
@@ -41,22 +40,28 @@ namespace CSE870BPSPrototype
 			CameraRear = GetNode<Camera3D>("Cameras/SubViewportRear/Camera3DRear");
 			ProximitySensorArray = GetNode<ProximitySensorArray>("ProximitySensorArray");
 			
-			// init state machine
+			// init states
 			StateMachine.TransitionState("ForwardState", null);
+			PreviousSpeed = LinearVelocity.Length();
+			_targetRects = new Dictionary<Node3D, ReferenceRect>();
+			HandleCameraCycled(false);
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
 		public override void _PhysicsProcess(double delta)
 		{
-			// common physics operations
+			// handle I/O events
 			SteerTarget = Input.GetAxis("turn_right", "turn_left");
 			SteerTarget *= SteerLimit;
+			
 			UISignalBus.EmitAcceleratingPressedEvent(Input.IsActionPressed("accelerate"));
 			UISignalBus.EmitBrakingPressedEvent(Input.IsActionPressed("reverse"));
+			if (Input.IsActionJustPressed("cycle_camera")) HandleCameraCycled(true);
 			
 			// process state machine
 			StateMachine.PhysicsUpdate(delta);
 			
+			// common physics operations
 			Steering = (float) Mathf.MoveToward(Steering, SteerTarget, SteerSpeed * delta);
 			PreviousSpeed = LinearVelocity.Length();
 			UISignalBus.EmitVelocityChanged(PreviousSpeed);
@@ -73,6 +78,27 @@ namespace CSE870BPSPrototype
 				float distance = CameraRear.GlobalTransform.Origin.DistanceTo(objMesh.GlobalTransform.Origin);
 				var proximity = ProximitySensorArray.DetectedObjects.Contains(objBody);
 				UISignalBus.EmitObjectChangedEvent(objBody, distance, proximity);
+			}
+		}
+
+		private void HandleCameraCycled(bool increment)
+		{
+			if (increment) _cameraIndex = (_cameraIndex + 1) % 3;
+			CameraInside.Current = _cameraIndex == 0;
+			CameraSide.Current = _cameraIndex == 1;
+			CameraTop.Current = _cameraIndex == 2;
+			
+			if (CameraInside.Current)
+			{
+				UISignalBus.EmitCameraCycled("Inside");
+			}
+			else if (CameraSide.Current)
+			{
+				UISignalBus.EmitCameraCycled("Side");
+			}
+			else
+			{
+				UISignalBus.EmitCameraCycled("Top");
 			}
 		}
 		

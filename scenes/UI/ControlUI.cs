@@ -12,6 +12,7 @@ namespace CSE870BPSPrototype
 		private Label VelocityLabel;
 		private Label AcceleratingLabel;
 		private Label BrakingLabel;
+		private Label CameraLabel;
 		private HBoxContainer ObjectPanelContainer;
 		private Dictionary<StaticBody3D, ObjectPanel> ObjectPanels;
 		
@@ -23,6 +24,7 @@ namespace CSE870BPSPrototype
 			VelocityLabel = GetNode<Label>("Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/VelocityLabel");
 			AcceleratingLabel = GetNode<Label>("Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/AcceleratingLabel");
 			BrakingLabel = GetNode<Label>("Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/BrakingLabel");
+			CameraLabel = GetNode<Label>("Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer3/CameraLabel");
 			ObjectPanelContainer = GetNode<HBoxContainer>("Panel/MarginContainer/HBoxContainer/ObjectPanelContainer");
 			ObjectPanels = new Dictionary<StaticBody3D, ObjectPanel>();
 			
@@ -42,6 +44,7 @@ namespace CSE870BPSPrototype
 			UISignalBus.Instance.ObjectChanged += OnObjectChanged;
 			UISignalBus.Instance.AcceleratingPressed += OnAcceleratingPressed;
 			UISignalBus.Instance.BrakingPressed += OnBrakingPressed;
+			UISignalBus.Instance.CameraCycled += OnCameraCycled;
 		}
 
 		private void OnGearChanged(string gear)
@@ -68,6 +71,11 @@ namespace CSE870BPSPrototype
 		private void OnBrakingPressed(bool braking)
 		{
 			BrakingLabel.Text = $"Braking: {braking}";
+		}
+
+		private void OnCameraCycled(string camera)
+		{
+			CameraLabel.Text = $"Camera: {camera}";
 		}
 	}
 }
