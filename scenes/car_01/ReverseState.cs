@@ -46,7 +46,7 @@ namespace CSE870BPSPrototype
             if (Input.IsActionPressed("reverse"))
             {
                 Car.EngineForce = 0.0f;
-                Car.Brake = Car.BrakeStrength;
+                Car.Brake = Car.BrakeStrength * 1.5f;
             }
             
             if (Input.IsActionJustPressed("shift_gear"))
