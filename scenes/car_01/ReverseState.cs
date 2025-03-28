@@ -16,7 +16,6 @@ namespace CSE870BPSPrototype
         public override void Enter(Dictionary args)
         {
             GD.Print("Entered ReverseState");
-            
             Car.VisualDisplayInterfaceSprite.Visible = true;
             UISignalBus.EmitGearChanged("Reverse");
         }
@@ -24,7 +23,25 @@ namespace CSE870BPSPrototype
         // Called every frame. 'delta' is the elapsed time since the previous frame.
         public override void PhysicsUpdate(double delta)
         {
-            if (Input.IsActionPressed("accelerate"))
+            // Emergency braking system
+            var emergencyBraking = false;
+            foreach (var obj in Car.CollisionObjects.GetChildren())
+            {
+                var objBody = obj as StaticBody3D;
+                var objMesh = obj.GetChild(0) as MeshInstance3D;
+                
+                var distance = Car.CalculateObjectDistance(objMesh);
+                var proximity = Car.IsObjectInProximity(objBody, objMesh);
+
+                if (distance <= Car.AutoBrakingDistance && proximity)
+                {
+                    emergencyBraking = true;
+                }
+            }
+            
+            // Acceleration physics
+            var isAccelerating = Input.IsActionPressed("accelerate");
+            if (isAccelerating)
             {
                 var speed = Car.LinearVelocity.Length();
                 if (speed < 2.5 && speed > 0.01)
@@ -42,13 +59,20 @@ namespace CSE870BPSPrototype
             {
                 Car.EngineForce = 0.0f;
             }
-
-            if (Input.IsActionPressed("reverse"))
+            
+            // Braking physics
+            var isBraking = emergencyBraking || Input.IsActionPressed("reverse");
+            if (isBraking)
             {
                 Car.EngineForce = 0.0f;
                 Car.Brake = Car.BrakeStrength * 1.5f;
             }
             
+            // UI update signals
+            UISignalBus.EmitBrakingPressedEvent(isBraking);
+            UISignalBus.EmitAcceleratingPressedEvent(isAccelerating);
+            
+            // State change
             if (Input.IsActionJustPressed("shift_gear"))
             {
                 EmitSignal(nameof(Transitioned), "ForwardState", new Dictionary());

@@ -10,6 +10,8 @@ namespace CSE870BPSPrototype
 		[Export] public float SteerLimit = 0.4f;
 		[Export] public float BrakeStrength = 2.0f;
 		[Export] public float EngineForceValue = 40.0f;
+		[Export] public float AutoBrakingDistance = 5.0f;
+		[Export] public float ObjectAlarmDistance = 5.0f;
 		[Export] public Node3D CollisionObjects {get; set;}
  		
 		public StateMachine StateMachine;
@@ -50,30 +52,27 @@ namespace CSE870BPSPrototype
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
 		public override void _PhysicsProcess(double delta)
 		{
-			// handle I/O events
+			// Common I/O events
 			SteerTarget = Input.GetAxis("turn_right", "turn_left");
 			SteerTarget *= SteerLimit;
-			
-			UISignalBus.EmitAcceleratingPressedEvent(Input.IsActionPressed("accelerate"));
-			UISignalBus.EmitBrakingPressedEvent(Input.IsActionPressed("reverse"));
 			if (Input.IsActionJustPressed("cycle_camera")) HandleCameraCycled(true);
 			
-			// process state machine
+			// Process state machine
 			StateMachine.PhysicsUpdate(delta);
 			
-			// common physics operations
+			// Common physics operations
 			Steering = (float) Mathf.MoveToward(Steering, SteerTarget, SteerSpeed * delta);
 			PreviousSpeed = LinearVelocity.Length();
 			UISignalBus.EmitVelocityChanged(PreviousSpeed);
 			
-			// object highlighting & UI updates
+			// Object highlighting & UI updates
 			foreach (var obj in CollisionObjects.GetChildren())
 			{
-				// update reference rectangles
+				// Update reference rectangles
 				var objMesh = obj.GetChild(0) as MeshInstance3D;
 				UpdateTargetRect(CameraRear, objMesh);
 				
-				// update UI
+				// Update UI
 				var objBody = obj as StaticBody3D;
 				var distance = CalculateObjectDistance(objMesh);
 				var proximity = IsObjectInProximity(objBody, objMesh);
@@ -81,12 +80,12 @@ namespace CSE870BPSPrototype
 			}
 		}
 
-		private float CalculateObjectDistance(MeshInstance3D objMesh)
+		public float CalculateObjectDistance(MeshInstance3D objMesh)
 		{
 			return CameraRear.GlobalTransform.Origin.DistanceTo(objMesh.GlobalTransform.Origin);
 		}
 
-		private bool IsObjectInProximity(StaticBody3D objBody,  MeshInstance3D objMesh)
+		public bool IsObjectInProximity(StaticBody3D objBody,  MeshInstance3D objMesh)
 		{
 			var inSensor = ProximitySensorArray.DetectedObjects.Contains(objBody);
 			var inFov = IsObjectInCameraFov(CameraRear, objMesh);

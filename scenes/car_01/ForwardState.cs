@@ -16,7 +16,6 @@ namespace CSE870BPSPrototype
 		public override void Enter(Dictionary args)
 		{
 			GD.Print("Entered ForwardState");
-
 			Car.VisualDisplayInterfaceSprite.Visible = false;
 			UISignalBus.EmitGearChanged("Forward");
 		}
@@ -24,7 +23,9 @@ namespace CSE870BPSPrototype
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
 		public override void PhysicsUpdate(double delta)
 		{
-			if (Input.IsActionPressed("accelerate"))
+			// Acceleration physics
+			var isAccelerating = Input.IsActionPressed("accelerate");
+			if (isAccelerating)
 			{
 				var speed = Car.LinearVelocity.Length();
 				if (speed < 5.0 && speed > 0.01)
@@ -43,12 +44,19 @@ namespace CSE870BPSPrototype
 				Car.EngineForce = 0.0f;
 			}
 			
-			if (Input.IsActionPressed("reverse"))
+			// Braking physics
+			var isBraking = Input.IsActionPressed("reverse");
+			if (isBraking)
 			{
 				Car.EngineForce = 0.0f;
 				Car.Brake = Car.BrakeStrength;
 			}
 			
+			// UI update signals
+			UISignalBus.EmitBrakingPressedEvent(isBraking);
+			UISignalBus.EmitAcceleratingPressedEvent(isAccelerating);
+			
+			// State change
 			if (Input.IsActionJustPressed("shift_gear"))
 			{
 				EmitSignal(nameof(Transitioned), "ReverseState", new Dictionary());
