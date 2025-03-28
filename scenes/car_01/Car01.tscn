@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://codyys3sikh3v"]
+[gd_scene load_steps=14 format=3 uid="uid://codyys3sikh3v"]
 
 [ext_resource type="PackedScene" uid="uid://ch72lgn35p8l" path="res://assets/free_car_lowpoly/FREE_CAR_01.fbx" id="1_yiem6"]
 [ext_resource type="Script" path="res://scenes/car_01/Car01.cs" id="2_a6s4r"]
@@ -22,6 +22,14 @@ albedo_color = Color(1, 1, 1, 0)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_il7yj"]
 size = Vector3(2.055, 1.525, 3.21)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fs8di"]
+albedo_color = Color(0.165656, 0.165656, 0.165656, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_r2vmo"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_yir5o"]
+viewport_path = NodePath("Cameras/SubViewportRear")
 
 [node name="Car01" instance=ExtResource("1_yiem6")]
 collision_mask = 3
@@ -92,3 +100,35 @@ suspension_stiffness = 10.0
 
 [node name="ProximitySensorArray" parent="." index="7" instance=ExtResource("6_klube")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.25616)
+
+[node name="VisualDisplayInterface" type="MeshInstance3D" parent="." index="8"]
+transform = Transform3D(0.635, 0, 0, 0, 0.277, 0, 0, 0, 0.039, -0.0996118, 1.19337, 0.616846)
+material_override = SubResource("StandardMaterial3D_fs8di")
+mesh = SubResource("BoxMesh_r2vmo")
+
+[node name="Sprite3D" type="Sprite3D" parent="VisualDisplayInterface" index="0"]
+transform = Transform3D(0.18433, 0, 0, 0, 0.165224, 0, 0, 0, 1, -0.00282037, 0.0360355, -0.596747)
+texture = SubResource("ViewportTexture_yir5o")
+
+[node name="Cameras" type="Node3D" parent="." index="9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.68762, 0)
+
+[node name="SubViewportRear" type="SubViewport" parent="Cameras" index="0"]
+
+[node name="Camera3DRear" type="Camera3D" parent="Cameras/SubViewportRear" index="0"]
+transform = Transform3D(0.999722, -0.000144906, -0.0235868, 0, 0.999981, -0.00614339, 0.0235873, 0.00614168, 0.999703, -0.0555706, 0.85315, -1.72057)
+current = true
+
+[node name="Camera3DInside" type="Camera3D" parent="Cameras" index="1"]
+transform = Transform3D(-0.997119, 0.00278221, 0.0758038, 0, 0.999327, -0.0366781, -0.0758549, -0.0365724, -0.996448, 0.337236, 6.02292, -0.247986)
+current = true
+
+[node name="Camera3DSide" type="Camera3D" parent="Cameras" index="2"]
+transform = Transform3D(0.00604445, -0.121077, 0.992624, 0, 0.992643, 0.121079, -0.999981, -0.000731857, 0.00599999, 7.67391, 6.52291, -0.402874)
+
+[node name="Camera3DTop" type="Camera3D" parent="Cameras" index="3"]
+transform = Transform3D(-0.0114456, -0.999768, 0.0182473, 0, 0.0182485, 0.999833, -0.999935, 0.0114437, -0.000208865, 0.15987, 17.3639, -0.0920957)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Cameras" index="4"]
+transform = Transform3D(0.999722, -0.000144906, -0.0235868, 0, 0.999981, -0.00614339, 0.0235873, 0.00614168, 0.999703, -0.0555706, 5.54077, -1.72057)
+remote_path = NodePath("../SubViewportRear/Camera3DRear")
