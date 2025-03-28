@@ -66,7 +66,7 @@ namespace CSE870BPSPrototype
 			PreviousSpeed = LinearVelocity.Length();
 			UISignalBus.EmitVelocityChanged(PreviousSpeed);
 			
-			// object highlighting & sensor calculations
+			// object highlighting & UI updates
 			foreach (var obj in CollisionObjects.GetChildren())
 			{
 				// update reference rectangles
@@ -75,10 +75,17 @@ namespace CSE870BPSPrototype
 				
 				// update UI
 				var objBody = obj as StaticBody3D;
-				float distance = CameraRear.GlobalTransform.Origin.DistanceTo(objMesh.GlobalTransform.Origin);
-				var proximity = ProximitySensorArray.DetectedObjects.Contains(objBody);
+				var distance = CameraRear.GlobalTransform.Origin.DistanceTo(objMesh.GlobalTransform.Origin);
+				var proximity = IsObjectInProximity(objBody);
 				UISignalBus.EmitObjectChangedEvent(objBody, distance, proximity);
 			}
+		}
+
+		private bool IsObjectInProximity(StaticBody3D obj)
+		{
+			var inSensor = ProximitySensorArray.DetectedObjects.Contains(obj);
+			var inFov = IsNodeInCameraFov(CameraRear, obj);
+			return inSensor || inFov;
 		}
 
 		private void HandleCameraCycled(bool increment)
