@@ -16,8 +16,11 @@ namespace CSE870BPSPrototype
 		public override void Enter(Dictionary args)
 		{
 			GD.Print("Entered ForwardState");
-			Car.VisualDisplayInterfaceSprite.Visible = false;
 			UISignalBus.EmitGearChanged("Forward");
+			if (!Car.AlwaysDisplayBackupCamera)
+			{
+				Car.VisualDisplayInterfaceSprite.Visible = false;
+			}
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.

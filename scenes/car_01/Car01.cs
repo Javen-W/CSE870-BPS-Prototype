@@ -12,6 +12,7 @@ namespace CSE870BPSPrototype
 		[Export] public float EngineForceValue = 40.0f;
 		[Export] public float AutoBrakingDistance = 5.0f;
 		[Export] public float ObjectAlarmDistance = 5.0f;
+		[Export] public bool AlwaysDisplayBackupCamera = false;
 		[Export] public Node3D CollisionObjects {get; set;}
  		
 		public StateMachine StateMachine;

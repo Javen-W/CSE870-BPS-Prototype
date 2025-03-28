@@ -94,6 +94,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
 
 [node name="Car01" parent="." node_paths=PackedStringArray("CollisionObjects") instance=ExtResource("2_i76hr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.68762, 0)
+AlwaysDisplayBackupCamera = true
 CollisionObjects = NodePath("../CollisionObjects")
 
 [node name="CollisionObjects" type="Node3D" parent="."]
