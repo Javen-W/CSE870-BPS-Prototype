@@ -5,59 +5,64 @@ namespace CSE870BPSPrototype
 {
 	public partial class Main : Node3D
 	{
-		private int currentScenarioIndex = 1;
+		private int currentScenarioIndex;
 		private Node3D currentScenario;
 		
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
 			// Init UI scenario
-			UISignalBus.EmitScenarioChanged(currentScenarioIndex);
+			currentScenarioIndex = 1;
+			currentScenario = GetNode<Node3D>("Scenario1");
+			var collisionObjects = currentScenario.GetChild(2) as Node3D;
+			UISignalBus.EmitScenarioChanged(currentScenarioIndex, collisionObjects);
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
 		public override void _Process(double delta)
 		{
-			var scenarioChanged = HandleScenarioChangeInput();
-			if (scenarioChanged)
-			{
-				UISignalBus.EmitScenarioChanged(currentScenarioIndex);
-			}
+			HandleScenarioChangeInput();
 		}
 
-		private bool HandleScenarioChangeInput()
+		private void ChangeScenarioScene(int scenarioIndex, string scenarioPath)
+		{
+			currentScenarioIndex = scenarioIndex;
+			if (currentScenario != null)
+			{
+				currentScenario.QueueFree();
+			}
+			currentScenario = ResourceLoader.Load<PackedScene>(scenarioPath).Instantiate<Node3D>();
+			AddChild(currentScenario);
+			var collisionObjects = currentScenario.GetChild(2) as Node3D;
+			UISignalBus.EmitScenarioChanged(currentScenarioIndex, collisionObjects);
+		}
+
+		private void HandleScenarioChangeInput()
 		{
 			if (Input.IsActionJustPressed("scenario1"))
 			{
-				currentScenarioIndex = 1;
-				return true;
+				ChangeScenarioScene(1, "res://scenes/scenarios/Scenario1.tscn");
 			}
-			if (Input.IsActionJustPressed("scenario2"))
+			else if (Input.IsActionJustPressed("scenario2"))
 			{
-				currentScenarioIndex = 2;
-				return true;
+				ChangeScenarioScene(2, "res://scenes/scenarios/Scenario2.tscn");
 			}
-			if (Input.IsActionJustPressed("scenario3"))
+			else if (Input.IsActionJustPressed("scenario3"))
 			{
-				currentScenarioIndex = 3;
-				return true;
+				ChangeScenarioScene(3, "res://scenes/scenarios/Scenario3.tscn");
 			}
-			if (Input.IsActionJustPressed("scenario4"))
+			else if (Input.IsActionJustPressed("scenario4"))
 			{
-				currentScenarioIndex = 4;
-				return true;
+				ChangeScenarioScene(4, "res://scenes/scenarios/Scenario4.tscn");
 			}
-			if (Input.IsActionJustPressed("scenario5"))
+			else if (Input.IsActionJustPressed("scenario5"))
 			{
-				currentScenarioIndex = 5;
-				return true;
+				ChangeScenarioScene(5, "res://scenes/scenarios/Scenario5.tscn");
 			}
-			if (Input.IsActionJustPressed("scenario6"))
+			else if (Input.IsActionJustPressed("scenario6"))
 			{
-				currentScenarioIndex = 6;
-				return true;
+				ChangeScenarioScene(6, "res://scenes/scenarios/Scenario6.tscn");
 			}
-			return false;
 		}
 	}
 }

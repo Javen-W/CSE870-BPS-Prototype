@@ -38,16 +38,6 @@ namespace CSE870BPSPrototype
 			ObjectPanelContainer = GetNode<HBoxContainer>("Panel/MarginContainer/HBoxContainer/ObjectPanelContainer");
 			ObjectPanels = new Dictionary<StaticBody3D, ObjectPanel>();
 			
-			// Init object panels
-			foreach (var obj in CollisionObjects.GetChildren())
-			{
-				var objBody = obj as StaticBody3D;
-				var panel = ResourceLoader.Load<PackedScene>("res://scenes/UI/ObjectPanel.tscn").Instantiate() as ObjectPanel;
-				ObjectPanels[objBody] = panel;
-				ObjectPanelContainer.AddChild(panel);
-				panel.NameLabel.Text = objBody.Name;
-			}
-			
 			// Handle signals
 			UISignalBus.Instance.GearChanged += OnGearChanged;
 			UISignalBus.Instance.VelocityChanged += OnVelocityChanged;
@@ -60,10 +50,27 @@ namespace CSE870BPSPrototype
 			UISignalBus.Instance.CollisionDetected += OnCollisionDetected;
 		}
 		
-		private void OnScenarioChanged(int scenario)
+		private void OnScenarioChanged(int scenario, Node3D collisionObjects)
 		{
 			ScenarioLabel.Text = $"Scenario: {scenario}";
 			ScenarioDescriptionLabel.Text = $"Scenario({scenario}): ...";
+			
+			// Clear existing object panels
+			foreach (var objBody in ObjectPanels.Keys)
+			{
+				ObjectPanels[objBody].QueueFree();
+			}
+			
+			// Init object panels
+			CollisionObjects = collisionObjects;
+			foreach (var obj in CollisionObjects.GetChildren())
+			{
+				var objBody = obj as StaticBody3D;
+				var panel = ResourceLoader.Load<PackedScene>("res://scenes/UI/ObjectPanel.tscn").Instantiate() as ObjectPanel;
+				ObjectPanels[objBody] = panel;
+				ObjectPanelContainer.AddChild(panel);
+				panel.NameLabel.Text = objBody.Name;
+			}
 		}
 
 		private void OnCollisionDetected(bool collisionDetected)
