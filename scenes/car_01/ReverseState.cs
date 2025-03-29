@@ -25,17 +25,20 @@ namespace CSE870BPSPrototype
         {
             // Emergency braking system
             var emergencyBraking = false;
-            foreach (var obj in Car.CollisionObjects.GetChildren())
+            if (!Car.AlarmMuted)
             {
-                var objBody = obj as StaticBody3D;
-                var objMesh = obj.GetChild(0) as MeshInstance3D;
-                
-                var distance = Car.CalculateObjectDistance(objMesh);
-                var proximity = Car.IsObjectInProximity(objBody, objMesh);
-
-                if (distance <= Car.AutoBrakingDistance && proximity)
+                foreach (var obj in Car.CollisionObjects.GetChildren())
                 {
-                    emergencyBraking = true;
+                    var objBody = obj as StaticBody3D;
+                    var objMesh = obj.GetChild(0) as MeshInstance3D;
+                
+                    var distance = Car.CalculateObjectDistance(objMesh);
+                    var proximity = Car.IsObjectInProximity(objBody, objMesh);
+
+                    if (distance <= Car.AutoBrakingDistance && proximity)
+                    {
+                        emergencyBraking = true;
+                    }
                 }
             }
             
