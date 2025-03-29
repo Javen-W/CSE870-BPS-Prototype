@@ -1,12 +1,12 @@
 [gd_scene load_steps=18 format=3 uid="uid://codyys3sikh3v"]
 
 [ext_resource type="PackedScene" uid="uid://ch72lgn35p8l" path="res://assets/free_car_lowpoly/FREE_CAR_01.fbx" id="1_yiem6"]
-[ext_resource type="Script" path="res://scenes/car_01/Car01.cs" id="2_a6s4r"]
+[ext_resource type="Script" path="res://scenes/car_01/Car01.gd" id="2_0ruqj"]
 [ext_resource type="PackedScene" uid="uid://cp1l3rohtd5b7" path="res://scenes/state_machine/StateMachine.tscn" id="3_4jn1c"]
-[ext_resource type="Script" path="res://scenes/car_01/ForwardState.cs" id="4_wuq25"]
-[ext_resource type="Script" path="res://scenes/car_01/ReverseState.cs" id="5_qlskt"]
+[ext_resource type="Script" path="res://scenes/car_01/ForwardState.gd" id="4_twpqr"]
+[ext_resource type="Script" path="res://scenes/car_01/ReverseState.gd" id="5_os0vf"]
+[ext_resource type="Script" path="res://scenes/car_01/CollisionState.gd" id="6_5so5s"]
 [ext_resource type="PackedScene" uid="uid://4liamcly4xhm" path="res://scenes/proximity_sensor/ProximitySensorArray.tscn" id="6_klube"]
-[ext_resource type="Script" path="res://scenes/car_01/CollisionState.cs" id="6_xiqb6"]
 [ext_resource type="PackedScene" uid="uid://buvwmt777w52t" path="res://scenes/collision_sensor/CollisionDetectionSensor.tscn" id="7_ihymp"]
 [ext_resource type="AudioStream" uid="uid://buq2qnh5bhtx8" path="res://assets/sfx/beep-313342.mp3" id="9_psvjl"]
 [ext_resource type="AudioStream" uid="uid://b0koe6r8d12fy" path="res://assets/sfx/car-crash-211710.mp3" id="10_xrm00"]
@@ -40,9 +40,7 @@ collision_mask = 3
 mass = 100.0
 center_of_mass_mode = 1
 center_of_mass = Vector3(0, 0.4, 0)
-script = ExtResource("2_a6s4r")
-AutoBrakingDistance = 3.0
-ObjectAlarmDistance = 8.0
+script = ExtResource("2_0ruqj")
 
 [node name="car body" parent="." index="0"]
 transform = Transform3D(100, 0, 0, 0, -4.37114e-06, 100, 0, -100, -4.37114e-06, 0, 0, 0.0804537)
@@ -63,17 +61,17 @@ shape = SubResource("BoxShape3D_il7yj")
 
 [node name="StateMachine" parent="." index="2" instance=ExtResource("3_4jn1c")]
 
-[node name="ForwardState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("Car")]
-script = ExtResource("4_wuq25")
-Car = NodePath("../..")
+[node name="ForwardState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("car")]
+script = ExtResource("4_twpqr")
+car = NodePath("../..")
 
-[node name="ReverseState" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("Car")]
-script = ExtResource("5_qlskt")
-Car = NodePath("../..")
+[node name="ReverseState" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("car")]
+script = ExtResource("5_os0vf")
+car = NodePath("../..")
 
-[node name="CollisionState" type="Node" parent="StateMachine" index="2" node_paths=PackedStringArray("Car")]
-script = ExtResource("6_xiqb6")
-Car = NodePath("../..")
+[node name="CollisionState" type="Node" parent="StateMachine" index="2" node_paths=PackedStringArray("car")]
+script = ExtResource("6_5so5s")
+car = NodePath("../..")
 
 [node name="Wheel1" type="VehicleWheel3D" parent="." index="3"]
 transform = Transform3D(1.20514, 0, 0, 0, 1, 0, 0, 0, 1, 1.14015, 0.41738, 1.12409)

@@ -1,17 +1,18 @@
 extends Node
+class_name State
 
 # Signal for transitioning to a new state
-signal transitioned(new_state_name: String, args: Dictionary)
+signal transitioned(new_state_name: String)
 
 # Virtual methods
-func enter(args: Dictionary) -> void:
-    pass
+func enter() -> void:
+	pass
 
 func exit() -> void:
-    pass
+	pass
 
 func update(_delta: float) -> void:
-    pass
+	pass
 
 func physics_update(_delta: float) -> void:
-    pass
+	pass

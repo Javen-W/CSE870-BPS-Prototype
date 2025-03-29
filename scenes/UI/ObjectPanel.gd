@@ -1,4 +1,5 @@
 extends Control
+class_name ObjectPanel
 
 @onready var name_label: Label = $Panel/MarginContainer/VBoxContainer/NameLabel
 @onready var distance_label: Label = $Panel/MarginContainer/VBoxContainer/DistanceLabel
@@ -6,4 +7,4 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-    pass  # Node references are already initialized with @onready
+	pass  # Node references are already initialized with @onready

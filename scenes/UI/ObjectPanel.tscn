@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dbaytkdo51oyh"]
 
-[ext_resource type="Script" path="res://scenes/UI/ObjectPanel.cs" id="1_4ybmi"]
+[ext_resource type="Script" path="res://scenes/UI/ObjectPanel.gd" id="1_1kk1h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uprsm"]
 bg_color = Color(0.187176, 0.187176, 0.187176, 1)
@@ -14,7 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("1_4ybmi")
+script = ExtResource("1_1kk1h")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1

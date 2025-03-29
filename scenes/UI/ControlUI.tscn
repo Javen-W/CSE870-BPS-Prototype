@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c2wmdb807f6h0"]
 
-[ext_resource type="Script" path="res://scenes/UI/ControlUI.cs" id="1_kgrh3"]
+[ext_resource type="Script" path="res://scenes/UI/ControlUI.gd" id="1_v8dnp"]
 
 [sub_resource type="Gradient" id="Gradient_2gh0l"]
 offsets = PackedFloat32Array(0, 0.61435, 1)
@@ -18,7 +18,7 @@ anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
 size_flags_horizontal = 3
-script = ExtResource("1_kgrh3")
+script = ExtResource("1_v8dnp")
 
 [node name="Panel" type="Panel" parent="."]
 modulate = Color(1, 1, 1, 0.447059)
