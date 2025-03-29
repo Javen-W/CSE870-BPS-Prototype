@@ -13,6 +13,7 @@ namespace CSE870BPSPrototype
 		[Export] public float AutoBrakingDistance = 5.0f;
 		[Export] public float ObjectAlarmDistance = 5.0f;
 		[Export] public bool AlwaysDisplayBackupCamera = false;
+		[Export] public bool AlarmMuted = false;
 		[Export] public Node3D CollisionObjects {get; set;}
  		
 		public StateMachine StateMachine;
@@ -48,6 +49,7 @@ namespace CSE870BPSPrototype
 			PreviousSpeed = LinearVelocity.Length();
 			_targetRects = new Dictionary<Node3D, ReferenceRect>();
 			HandleCameraCycled(false);
+			UISignalBus.EmitAlarmMuted(AlarmMuted);
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -57,6 +59,11 @@ namespace CSE870BPSPrototype
 			SteerTarget = Input.GetAxis("turn_right", "turn_left");
 			SteerTarget *= SteerLimit;
 			if (Input.IsActionJustPressed("cycle_camera")) HandleCameraCycled(true);
+			if (Input.IsActionJustPressed("mute_alarm"))
+			{
+				AlarmMuted = !AlarmMuted;
+				UISignalBus.EmitAlarmMuted(AlarmMuted);
+			}
 			
 			// Process state machine
 			StateMachine.PhysicsUpdate(delta);
