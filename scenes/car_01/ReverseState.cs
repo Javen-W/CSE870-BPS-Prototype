@@ -18,15 +18,17 @@ namespace CSE870BPSPrototype
             GD.Print("Entered ReverseState");
             Car.VisualDisplayInterfaceSprite.Visible = true;
             UISignalBus.EmitGearChanged("Reverse");
+            Car.AlarmSFXPlayer.Playing = true;
         }
 
         // Called every frame. 'delta' is the elapsed time since the previous frame.
         public override void PhysicsUpdate(double delta)
         {
-            // Emergency braking system
+            // Emergency braking & alarm systems
             var emergencyBraking = false;
             if (!Car.AlarmMuted)
             {
+                var minDist = float.MaxValue;
                 foreach (var obj in Car.CollisionObjects.GetChildren())
                 {
                     var objBody = obj as StaticBody3D;
@@ -34,12 +36,35 @@ namespace CSE870BPSPrototype
                 
                     var distance = Car.CalculateObjectDistance(objMesh);
                     var proximity = Car.IsObjectInProximity(objBody, objMesh);
-
+                    
+                    // Find nearest object
+                    if (distance <= Car.ObjectAlarmDistance)  // && proximity
+                    {
+                        minDist = Math.Min(minDist, distance);
+                    }
+                    
+                    // Enable emergency braking?
                     if (distance <= Car.AutoBrakingDistance && proximity)
                     {
                         emergencyBraking = true;
                     }
                 }
+                
+                // Calculate alarm frequency
+                if (minDist <= Car.ObjectAlarmDistance)
+                {
+                    Car.AlarmSFXPlayer.StreamPaused = false;
+                    Car.AlarmSFXPlayer.PitchScale = Mathf.Lerp(0.8f, 0.5f, minDist / Car.ObjectAlarmDistance);
+                }
+                else
+                {
+                    Car.AlarmSFXPlayer.StreamPaused = true;
+                }
+                
+            }
+            else
+            {
+                Car.AlarmSFXPlayer.StreamPaused = true;
             }
             
             // Acceleration physics

@@ -21,6 +21,7 @@ namespace CSE870BPSPrototype
 			{
 				Car.VisualDisplayInterfaceSprite.Visible = false;
 			}
+			Car.AlarmSFXPlayer.Playing = false;
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -17,6 +17,9 @@ namespace CSE870BPSPrototype
         {
             GD.Print("Entered CollisionState");
             UISignalBus.EmitCollisionDetected(true);
+            Car.AlarmSFXPlayer.Playing = true;
+            Car.AlarmSFXPlayer.StreamPaused = false;
+            Car.AlarmSFXPlayer.PitchScale = 0.85f;
         }
 
         // Called every frame. 'delta' is the elapsed time since the previous frame.

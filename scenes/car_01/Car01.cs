@@ -25,6 +25,7 @@ namespace CSE870BPSPrototype
 		public Camera3D CameraRear;
 		public ProximitySensorArray ProximitySensorArray;
 		public CollisionDetectionSensor CollisionDetectionSensor;
+		public AudioStreamPlayer3D AlarmSFXPlayer;
 
 		public float SteerTarget;
 		public float PreviousSpeed;
@@ -45,6 +46,7 @@ namespace CSE870BPSPrototype
 			CameraRear = GetNode<Camera3D>("Cameras/SubViewportRear/Camera3DRear");
 			ProximitySensorArray = GetNode<ProximitySensorArray>("ProximitySensorArray");
 			CollisionDetectionSensor = GetNode<CollisionDetectionSensor>("CollisionDetectionSensor");
+			AlarmSFXPlayer = GetNode<AudioStreamPlayer3D>("AlarmSFXPlayer");
 			
 			// Init states
 			StateMachine.TransitionState("ForwardState", null);
