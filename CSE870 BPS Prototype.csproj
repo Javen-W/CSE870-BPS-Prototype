@@ -6,4 +6,12 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>CSE870BPSPrototype</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Include="scenes\car_01\Car01.gd" />
+    <Content Include="scenes\car_01\CollisionState.gd" />
+    <Content Include="scenes\car_01\ForwardState.gd" />
+    <Content Include="scenes\car_01\ReverseState.gd" />
+    <Content Include="scenes\UI\ControlUI.gd" />
+    <Content Include="scenes\UI\ObjectPanel.gd" />
+  </ItemGroup>
 </Project>
