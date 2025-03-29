@@ -171,10 +171,15 @@ text = "Brake (S)"
 [node name="VSeparator" type="VSeparator" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 
-[node name="ScenarioDescriptionLabel" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 1
+follow_focus = true
+
+[node name="ScenarioDescriptionLabel" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_font_sizes/font_size = 12
 text = "Scenario (1): Backup normally without any collision objects."
 autowrap_mode = 2
