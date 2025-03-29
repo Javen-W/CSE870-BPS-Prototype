@@ -24,6 +24,7 @@ namespace CSE870BPSPrototype
 		public Camera3D CameraTop;
 		public Camera3D CameraRear;
 		public ProximitySensorArray ProximitySensorArray;
+		public CollisionDetectionSensor CollisionDetectionSensor;
 
 		public float SteerTarget;
 		public float PreviousSpeed;
@@ -34,7 +35,7 @@ namespace CSE870BPSPrototype
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
-			// init reference nodes
+			// Init reference nodes
 			SubViewportRear = GetNode<SubViewport>("Cameras/SubViewportRear");
 			VisualDisplayInterfaceSprite = GetNode<Sprite3D>("VisualDisplayInterface/Sprite3D");
 			StateMachine = GetNode<StateMachine>("StateMachine");
@@ -43,13 +44,17 @@ namespace CSE870BPSPrototype
 			CameraTop = GetNode<Camera3D>("Cameras/Camera3DTop");
 			CameraRear = GetNode<Camera3D>("Cameras/SubViewportRear/Camera3DRear");
 			ProximitySensorArray = GetNode<ProximitySensorArray>("ProximitySensorArray");
+			CollisionDetectionSensor = GetNode<CollisionDetectionSensor>("CollisionDetectionSensor");
 			
-			// init states
+			// Init states
 			StateMachine.TransitionState("ForwardState", null);
 			PreviousSpeed = LinearVelocity.Length();
 			_targetRects = new Dictionary<Node3D, ReferenceRect>();
 			HandleCameraCycled(false);
 			UISignalBus.EmitAlarmMuted(AlarmMuted);
+			
+			// Init signals
+			CollisionDetectionSensor.CollisionDetected += OnCollisionDetected;
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -98,6 +103,11 @@ namespace CSE870BPSPrototype
 			var inSensor = ProximitySensorArray.DetectedObjects.Contains(objBody);
 			var inFov = IsObjectInCameraFov(CameraRear, objMesh);
 			return inSensor || inFov;
+		}
+
+		private void OnCollisionDetected()
+		{
+			GD.Print("OnCollisionDetected()");
 		}
 
 		private void HandleCameraCycled(bool increment)

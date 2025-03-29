@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://codyys3sikh3v"]
+[gd_scene load_steps=15 format=3 uid="uid://codyys3sikh3v"]
 
 [ext_resource type="PackedScene" uid="uid://ch72lgn35p8l" path="res://assets/free_car_lowpoly/FREE_CAR_01.fbx" id="1_yiem6"]
 [ext_resource type="Script" path="res://scenes/car_01/Car01.cs" id="2_a6s4r"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scenes/car_01/ForwardState.cs" id="4_wuq25"]
 [ext_resource type="Script" path="res://scenes/car_01/ReverseState.cs" id="5_qlskt"]
 [ext_resource type="PackedScene" uid="uid://4liamcly4xhm" path="res://scenes/proximity_sensor/ProximitySensorArray.tscn" id="6_klube"]
+[ext_resource type="PackedScene" uid="uid://buvwmt777w52t" path="res://scenes/collision_sensor/CollisionDetectionSensor.tscn" id="7_ihymp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pyex0"]
 transparency = 1
@@ -133,3 +134,6 @@ transform = Transform3D(-0.0114456, -0.999768, 0.0182473, 0, 0.0182485, 0.999833
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="Cameras" index="4"]
 transform = Transform3D(0.999722, -0.000144906, -0.0235868, 0, 0.999981, -0.00614339, 0.0235873, 0.00614168, 0.999703, -0.0555706, 5.54077, -1.72057)
 remote_path = NodePath("../SubViewportRear/Camera3DRear")
+
+[node name="CollisionDetectionSensor" parent="." index="10" instance=ExtResource("7_ihymp")]
+collision_layer = 0
