@@ -1,9 +1,9 @@
 [gd_scene load_steps=28 format=3 uid="uid://bh7765vrq5muf"]
 
-[ext_resource type="Script" path="res://assets/truck_town/vehicles/vehicle.gd" id="1_qhfnb"]
+[ext_resource type="Script" uid="uid://d11nb4t3x1h35" path="res://assets/truck_town/vehicles/vehicle.gd" id="1_qhfnb"]
 [ext_resource type="ArrayMesh" uid="uid://bqrwin8ccgptt" path="res://assets/truck_town/vehicles/meshes/wheel.res" id="2_uwuq1"]
 [ext_resource type="ArrayMesh" uid="uid://cbpqxxd14g8un" path="res://assets/truck_town/vehicles/meshes/tow_truck.res" id="3_tv0o3"]
-[ext_resource type="Script" path="res://assets/truck_town/vehicles/follow_camera.gd" id="4_wddne"]
+[ext_resource type="Script" uid="uid://b5jv2pk3k1rmg" path="res://assets/truck_town/vehicles/follow_camera.gd" id="4_wddne"]
 [ext_resource type="ArrayMesh" uid="uid://ctglc27jx8xe2" path="res://assets/truck_town/vehicles/meshes/truck_cab.res" id="5_04cnp"]
 [ext_resource type="AudioStream" uid="uid://cb7wvsd6vygd3" path="res://assets/truck_town/vehicles/engine.wav" id="5_fwfew"]
 [ext_resource type="AudioStream" uid="uid://sy2li7u35867" path="res://assets/truck_town/vehicles/impact_1.wav" id="6_i7k5m"]

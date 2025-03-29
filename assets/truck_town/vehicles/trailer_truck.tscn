@@ -1,17 +1,18 @@
 [gd_scene load_steps=27 format=4 uid="uid://drinprblemj5u"]
 
-[ext_resource type="Script" path="res://vehicles/vehicle.gd" id="1_wetfm"]
-[ext_resource type="ArrayMesh" uid="uid://bqrwin8ccgptt" path="res://vehicles/meshes/wheel.res" id="2_q28iu"]
-[ext_resource type="ArrayMesh" uid="uid://ctglc27jx8xe2" path="res://vehicles/meshes/truck_cab.res" id="3_t1je7"]
-[ext_resource type="Script" path="res://vehicles/follow_camera.gd" id="4_4yhuf"]
-[ext_resource type="AudioStream" uid="uid://sy2li7u35867" path="res://vehicles/impact_1.wav" id="6_n54jl"]
-[ext_resource type="AudioStream" uid="uid://cb7wvsd6vygd3" path="res://vehicles/engine.wav" id="6_r21ue"]
-[ext_resource type="AudioStream" uid="uid://bf0h7s81yr8nj" path="res://vehicles/impact_2.wav" id="7_i1avs"]
-[ext_resource type="AudioStream" uid="uid://sun2n8a4xapl" path="res://vehicles/impact_3.wav" id="8_nmphs"]
-[ext_resource type="AudioStream" uid="uid://dpbayeeufya21" path="res://vehicles/impact_4.wav" id="9_11toc"]
-[ext_resource type="Texture2D" uid="uid://d4ostmqwgytk" path="res://vehicles/particle_smoke.png" id="10_5qary"]
-[ext_resource type="Texture2D" uid="uid://bju75l2w3r7vq" path="res://vehicles/blob_shadow.png" id="11_ifj1h"]
-[ext_resource type="Material" uid="uid://dyg750wqca86r" path="res://vehicles/truck_trailer.tres" id="12_hbs2y"]
+[ext_resource type="ArrayMesh" uid="uid://bqrwin8ccgptt" path="res://assets/truck_town/vehicles/meshes/wheel.res" id="2_q28iu"]
+[ext_resource type="ArrayMesh" uid="uid://ctglc27jx8xe2" path="res://assets/truck_town/vehicles/meshes/truck_cab.res" id="3_t1je7"]
+[ext_resource type="AudioStream" uid="uid://sy2li7u35867" path="res://assets/truck_town/vehicles/impact_1.wav" id="6_n54jl"]
+[ext_resource type="AudioStream" uid="uid://cb7wvsd6vygd3" path="res://assets/truck_town/vehicles/engine.wav" id="6_r21ue"]
+[ext_resource type="AudioStream" uid="uid://bf0h7s81yr8nj" path="res://assets/truck_town/vehicles/impact_2.wav" id="7_i1avs"]
+[ext_resource type="AudioStream" uid="uid://sun2n8a4xapl" path="res://assets/truck_town/vehicles/impact_3.wav" id="8_nmphs"]
+[ext_resource type="AudioStream" uid="uid://dpbayeeufya21" path="res://assets/truck_town/vehicles/impact_4.wav" id="9_11toc"]
+[ext_resource type="Texture2D" uid="uid://d4ostmqwgytk" path="res://assets/truck_town/vehicles/particle_smoke.png" id="10_5qary"]
+[ext_resource type="Texture2D" uid="uid://bju75l2w3r7vq" path="res://assets/truck_town/vehicles/blob_shadow.png" id="11_ifj1h"]
+[ext_resource type="Material" uid="uid://dyg750wqca86r" path="res://assets/truck_town/vehicles/truck_trailer.tres" id="12_hbs2y"]
+
+[sub_resource type="Resource" id="Resource_dfefm"]
+metadata/__load_path__ = "res://vehicles/vehicle.gd"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_itmot"]
 size = Vector3(1.30832, 1.05289, 0.757141)
@@ -21,6 +22,9 @@ size = Vector3(1.30832, 0.594339, 0.99649)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tbnf0"]
 size = Vector3(1.30832, 0.314981, 0.924881)
+
+[sub_resource type="Resource" id="Resource_uqqc8"]
+metadata/__load_path__ = "res://vehicles/follow_camera.gd"
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xu0em"]
 random_pitch = 1.05
@@ -155,7 +159,7 @@ size = Vector3(1.24025, 0.429309, 1.85267)
 [node name="Body" type="VehicleBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00169557, 0.222867, -0.0955184)
 center_of_mass_mode = 1
-script = ExtResource("1_wetfm")
+script = SubResource("Resource_dfefm")
 
 [node name="Wheel1" type="VehicleWheel3D" parent="Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.573678, 0.000773743, 1.10416)
@@ -240,7 +244,7 @@ transform = Transform3D(0.560672, -0.476692, 0.67706, 0, 0.817669, 0.575689, -0.
 current = true
 fov = 74.0
 near = 0.1
-script = ExtResource("4_4yhuf")
+script = SubResource("Resource_uqqc8")
 min_distance = 5.0
 max_distance = 7.0
 height = 2.5

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://buvwmt777w52t"]
 
-[ext_resource type="Script" path="res://scenes/collision_sensor/CollisionDetectionSensor.gd" id="1_776ug"]
+[ext_resource type="Script" uid="uid://c1bajagslyqn5" path="res://scenes/collision_sensor/CollisionDetectionSensor.gd" id="1_776ug"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_il7yj"]
 size = Vector3(2.055, 1.525, 3.21)

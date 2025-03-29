@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://4liamcly4xhm"]
 
-[ext_resource type="Script" path="res://scenes/proximity_sensor/ProximitySensorArray.gd" id="1_5coc8"]
+[ext_resource type="Script" uid="uid://bfxl7i4sbpjma" path="res://scenes/proximity_sensor/ProximitySensorArray.gd" id="1_5coc8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_78hq4"]
 size = Vector3(1.69, 1.345, 6.645)
