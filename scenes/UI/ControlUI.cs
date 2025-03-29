@@ -56,11 +56,11 @@ namespace CSE870BPSPrototype
 			ScenarioDescriptionLabel.Text = $"Scenario({scenario}): ...";
 			
 			// Clear existing object panels
-			foreach (var objBody in ObjectPanels.Keys)
+			foreach (var objPanel in ObjectPanelContainer.GetChildren())
 			{
-				ObjectPanels[objBody].QueueFree();
+				objPanel.QueueFree();
 			}
-			
+				
 			// Init object panels
 			CollisionObjects = collisionObjects;
 			foreach (var obj in CollisionObjects.GetChildren())
