@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://codyys3sikh3v"]
+[gd_scene load_steps=18 format=3 uid="uid://codyys3sikh3v"]
 
 [ext_resource type="PackedScene" uid="uid://ch72lgn35p8l" path="res://assets/free_car_lowpoly/FREE_CAR_01.fbx" id="1_yiem6"]
 [ext_resource type="Script" path="res://scenes/car_01/Car01.cs" id="2_a6s4r"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scenes/car_01/CollisionState.cs" id="6_xiqb6"]
 [ext_resource type="PackedScene" uid="uid://buvwmt777w52t" path="res://scenes/collision_sensor/CollisionDetectionSensor.tscn" id="7_ihymp"]
 [ext_resource type="AudioStream" uid="uid://buq2qnh5bhtx8" path="res://assets/sfx/beep-313342.mp3" id="9_psvjl"]
+[ext_resource type="AudioStream" uid="uid://b0koe6r8d12fy" path="res://assets/sfx/car-crash-211710.mp3" id="10_xrm00"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pyex0"]
 transparency = 1
@@ -149,3 +150,9 @@ collision_layer = 0
 [node name="AlarmSFXPlayer" type="AudioStreamPlayer3D" parent="." index="11"]
 stream = ExtResource("9_psvjl")
 max_db = -1.0
+
+[node name="CrashSFXPlayer" type="AudioStreamPlayer3D" parent="." index="12"]
+stream = ExtResource("10_xrm00")
+max_db = 0.0
+pitch_scale = 0.8
+max_polyphony = 2

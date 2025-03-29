@@ -17,6 +17,8 @@ namespace CSE870BPSPrototype
         {
             GD.Print("Entered CollisionState");
             UISignalBus.EmitCollisionDetected(true);
+            Car.CrashSFXPlayer.Playing = true;
+            
             Car.AlarmSFXPlayer.Playing = true;
             Car.AlarmSFXPlayer.StreamPaused = false;
             Car.AlarmSFXPlayer.PitchScale = 0.85f;
