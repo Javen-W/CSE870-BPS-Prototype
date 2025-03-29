@@ -148,7 +148,7 @@ text = "Accelerate (W)"
 [node name="Label3" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
-text = "Brake (S)"
+text = "Scenario (1-6)"
 
 [node name="Label4" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -163,10 +163,10 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "Camera (V)"
 
-[node name="Label2" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2"]
+[node name="Label3" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
-text = "Scenario ()"
+text = "Brake (S)"
 
 [node name="VSeparator" type="VSeparator" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2

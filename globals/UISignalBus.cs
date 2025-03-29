@@ -17,13 +17,13 @@ namespace CSE870BPSPrototype
 		
 		[Signal] public delegate void CameraCycledEventHandler(string camera);
 		
-		[Signal] public delegate void ScenarioChangedEventHandler(string scenario);
+		[Signal] public delegate void ScenarioChangedEventHandler(int scenario);
 		
 		[Signal] public delegate void AlarmMutedEventHandler(bool alarmMuted);
 		
 		[Signal] public delegate void CollisionDetectedEventHandler(bool collisionDetected);
 
-		public static void EmitScenarioChanged(string scenario)
+		public static void EmitScenarioChanged(int scenario)
 		{
 			Instance.EmitSignal(nameof(ScenarioChanged), scenario);
 		}

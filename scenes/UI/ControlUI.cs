@@ -14,6 +14,7 @@ namespace CSE870BPSPrototype
 		private Label BrakingLabel;
 		private Label CameraLabel;
 		private Label ScenarioLabel;
+		private Label ScenarioDescriptionLabel;
 		private Label MutedLabel;
 		private Label CollidedLabel;
 		
@@ -30,6 +31,7 @@ namespace CSE870BPSPrototype
 			BrakingLabel = GetNode<Label>("Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/BrakingLabel");
 			CameraLabel = GetNode<Label>("Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer3/CameraLabel");
 			ScenarioLabel = GetNode<Label>("Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer3/ScenarioLabel");
+			ScenarioDescriptionLabel = GetNode<Label>("Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/ScenarioDescriptionLabel");
 			MutedLabel = GetNode<Label>("Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer4/MutedLabel");
 			CollidedLabel = GetNode<Label>("Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer4/CollidedLabel");
 			
@@ -57,6 +59,12 @@ namespace CSE870BPSPrototype
 			UISignalBus.Instance.AlarmMuted += OnAlarmMuted;
 			UISignalBus.Instance.CollisionDetected += OnCollisionDetected;
 		}
+		
+		private void OnScenarioChanged(int scenario)
+		{
+			ScenarioLabel.Text = $"Scenario: {scenario}";
+			ScenarioDescriptionLabel.Text = $"Scenario({scenario}): ...";
+		}
 
 		private void OnCollisionDetected(bool collisionDetected)
 		{
@@ -66,11 +74,6 @@ namespace CSE870BPSPrototype
 		private void OnAlarmMuted(bool muted)
 		{
 			MutedLabel.Text = $"Muted: {muted}";
-		}
-
-		private void OnScenarioChanged(string scenario)
-		{
-			ScenarioLabel.Text = $"Scenario: {scenario}";
 		}
 
 		private void OnGearChanged(string gear)
