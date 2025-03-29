@@ -86,7 +86,7 @@ namespace CSE870BPSPrototype
 
 		private void OnCollisionDetected(bool collisionDetected)
 		{
-			CollidedLabel.Text = $"Collided: {collisionDetected}";
+			CollidedLabel.Text = $"Collision: {collisionDetected}";
 		}
 
 		private void OnAlarmMuted(bool muted)
