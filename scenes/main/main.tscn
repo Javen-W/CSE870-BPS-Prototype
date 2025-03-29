@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://byrdlcw7ro6w7"]
+[gd_scene load_steps=14 format=3 uid="uid://byrdlcw7ro6w7"]
 
+[ext_resource type="Script" path="res://scenes/main/Main.cs" id="1_e1tp7"]
 [ext_resource type="PackedScene" uid="uid://c2wmdb807f6h0" path="res://scenes/UI/ControlUI.tscn" id="1_ntsfm"]
 [ext_resource type="PackedScene" uid="uid://bmtig2uu2p4vi" path="res://scenes/roads/RoadStraight.tscn" id="2_34mt6"]
 [ext_resource type="PackedScene" uid="uid://codyys3sikh3v" path="res://scenes/car_01/Car01.tscn" id="2_i76hr"]
@@ -36,6 +37,7 @@ albedo_color = Color(0.992698, 0.431399, 9.62615e-07, 1)
 
 [node name="Main" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0148287, -4.76837e-07, 0.00996423)
+script = ExtResource("1_e1tp7")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.870356, 0.438752, -0.223556, 0, 0.453991, 0.891007, 0.492423, -0.775493, 0.395133, 0, 0, 0)
