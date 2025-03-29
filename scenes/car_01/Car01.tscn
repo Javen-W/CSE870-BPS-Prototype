@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://codyys3sikh3v"]
+[gd_scene load_steps=16 format=3 uid="uid://codyys3sikh3v"]
 
 [ext_resource type="PackedScene" uid="uid://ch72lgn35p8l" path="res://assets/free_car_lowpoly/FREE_CAR_01.fbx" id="1_yiem6"]
 [ext_resource type="Script" path="res://scenes/car_01/Car01.cs" id="2_a6s4r"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scenes/car_01/ForwardState.cs" id="4_wuq25"]
 [ext_resource type="Script" path="res://scenes/car_01/ReverseState.cs" id="5_qlskt"]
 [ext_resource type="PackedScene" uid="uid://4liamcly4xhm" path="res://scenes/proximity_sensor/ProximitySensorArray.tscn" id="6_klube"]
+[ext_resource type="Script" path="res://scenes/car_01/CollisionState.cs" id="6_xiqb6"]
 [ext_resource type="PackedScene" uid="uid://buvwmt777w52t" path="res://scenes/collision_sensor/CollisionDetectionSensor.tscn" id="7_ihymp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pyex0"]
@@ -64,6 +65,10 @@ Car = NodePath("../..")
 
 [node name="ReverseState" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("Car")]
 script = ExtResource("5_qlskt")
+Car = NodePath("../..")
+
+[node name="CollisionState" type="Node" parent="StateMachine" index="2" node_paths=PackedStringArray("Car")]
+script = ExtResource("6_xiqb6")
 Car = NodePath("../..")
 
 [node name="Wheel1" type="VehicleWheel3D" parent="." index="3"]

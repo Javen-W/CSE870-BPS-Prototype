@@ -52,6 +52,7 @@ namespace CSE870BPSPrototype
 			_targetRects = new Dictionary<Node3D, ReferenceRect>();
 			HandleCameraCycled(false);
 			UISignalBus.EmitAlarmMuted(AlarmMuted);
+			UISignalBus.EmitCollisionDetected(false);
 			
 			// Init signals
 			CollisionDetectionSensor.CollisionDetected += OnCollisionDetected;
@@ -108,6 +109,7 @@ namespace CSE870BPSPrototype
 		private void OnCollisionDetected()
 		{
 			GD.Print("OnCollisionDetected()");
+			StateMachine.TransitionState("CollisionState", null);
 		}
 
 		private void HandleCameraCycled(bool increment)
