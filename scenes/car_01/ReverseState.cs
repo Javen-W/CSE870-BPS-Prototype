@@ -74,11 +74,11 @@ namespace CSE870BPSPrototype
                 var speed = Car.LinearVelocity.Length();
                 if (speed < 2.5 && speed > 0.01)
                 {
-                    Car.EngineForce = -Mathf.Clamp(Car.EngineForceValue * Car.BrakeStrength * 2.5f / speed, 0.0f, 100.0f);
+                    Car.EngineForce = -Mathf.Clamp(Car.EngineForceValue * Car.BrakeStrength / speed, 0.0f, 100.0f);
                 }
                 else
                 {
-                    Car.EngineForce = -Car.EngineForceValue * Car.BrakeStrength * 0.5f;
+                    Car.EngineForce = -Car.EngineForceValue * 0.5f;
                 }
                 
                 Car.EngineForce *= Input.GetActionStrength("accelerate");
@@ -93,7 +93,7 @@ namespace CSE870BPSPrototype
             if (isBraking)
             {
                 Car.EngineForce = 0.0f;
-                Car.Brake = Car.BrakeStrength * 1.5f;
+                Car.Brake = Car.BrakeStrength * 2.5f;
             }
             
             // UI update signals

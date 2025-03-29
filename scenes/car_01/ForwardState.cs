@@ -46,6 +46,7 @@ namespace CSE870BPSPrototype
 			else
 			{
 				Car.EngineForce = 0.0f;
+				Car.Brake = Car.BrakeStrength * 0.5f;
 			}
 			
 			// Braking physics
