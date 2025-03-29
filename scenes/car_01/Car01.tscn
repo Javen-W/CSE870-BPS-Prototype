@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cp1l3rohtd5b7" path="res://scenes/state_machine/StateMachine.tscn" id="3_4jn1c"]
 [ext_resource type="Script" path="res://scenes/car_01/ForwardState.cs" id="4_wuq25"]
 [ext_resource type="Script" path="res://scenes/car_01/ReverseState.cs" id="5_qlskt"]
-[ext_resource type="PackedScene" uid="uid://4liamcly4xhm" path="res://scenes/ProximitySensorArray.tscn" id="6_klube"]
+[ext_resource type="PackedScene" uid="uid://4liamcly4xhm" path="res://scenes/proximity_sensor/ProximitySensorArray.tscn" id="6_klube"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pyex0"]
 transparency = 1
