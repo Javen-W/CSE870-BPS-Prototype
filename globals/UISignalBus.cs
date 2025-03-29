@@ -16,6 +16,27 @@ namespace CSE870BPSPrototype
 		[Signal] public delegate void BrakingPressedEventHandler(bool braking);
 		
 		[Signal] public delegate void CameraCycledEventHandler(string camera);
+		
+		[Signal] public delegate void ScenarioChangedEventHandler(string scenario);
+		
+		[Signal] public delegate void AlarmMutedEventHandler(bool alarmMuted);
+		
+		[Signal] public delegate void CollisionDetectedEventHandler(bool collisionDetected);
+
+		public static void EmitScenarioChanged(string scenario)
+		{
+			Instance.EmitSignal(nameof(ScenarioChanged), scenario);
+		}
+
+		public static void EmitAlarmMuted(bool alarmMuted)
+		{
+			Instance.EmitSignal(nameof(AlarmMuted), alarmMuted);
+		}
+
+		public static void EmitCollisionDetected(bool collisionDetected)
+		{
+			Instance.EmitSignal(nameof(CollisionDetected), collisionDetected);
+		}
 	
 		public static void EmitGearChanged(string gear)
 		{

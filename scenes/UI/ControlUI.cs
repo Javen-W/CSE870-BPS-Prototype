@@ -13,6 +13,10 @@ namespace CSE870BPSPrototype
 		private Label AcceleratingLabel;
 		private Label BrakingLabel;
 		private Label CameraLabel;
+		private Label ScenarioLabel;
+		private Label MutedLabel;
+		private Label CollidedLabel;
+		
 		private HBoxContainer ObjectPanelContainer;
 		private Dictionary<StaticBody3D, ObjectPanel> ObjectPanels;
 		
@@ -25,6 +29,10 @@ namespace CSE870BPSPrototype
 			AcceleratingLabel = GetNode<Label>("Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/AcceleratingLabel");
 			BrakingLabel = GetNode<Label>("Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/BrakingLabel");
 			CameraLabel = GetNode<Label>("Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer3/CameraLabel");
+			ScenarioLabel = GetNode<Label>("Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer3/ScenarioLabel");
+			MutedLabel = GetNode<Label>("Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer4/MutedLabel");
+			CollidedLabel = GetNode<Label>("Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer4/CollidedLabel");
+			
 			ObjectPanelContainer = GetNode<HBoxContainer>("Panel/MarginContainer/HBoxContainer/ObjectPanelContainer");
 			ObjectPanels = new Dictionary<StaticBody3D, ObjectPanel>();
 			
@@ -45,6 +53,24 @@ namespace CSE870BPSPrototype
 			UISignalBus.Instance.AcceleratingPressed += OnAcceleratingPressed;
 			UISignalBus.Instance.BrakingPressed += OnBrakingPressed;
 			UISignalBus.Instance.CameraCycled += OnCameraCycled;
+			UISignalBus.Instance.ScenarioChanged += OnScenarioChanged;
+			UISignalBus.Instance.AlarmMuted += OnAlarmMuted;
+			UISignalBus.Instance.CollisionDetected += OnCollisionDetected;
+		}
+
+		private void OnCollisionDetected(bool collisionDetected)
+		{
+			CollidedLabel.Text = $"Collided: {collisionDetected}";
+		}
+
+		private void OnAlarmMuted(bool muted)
+		{
+			MutedLabel.Text = $"Muted: {muted}";
+		}
+
+		private void OnScenarioChanged(string scenario)
+		{
+			ScenarioLabel.Text = $"Scenario: {scenario}";
 		}
 
 		private void OnGearChanged(string gear)
