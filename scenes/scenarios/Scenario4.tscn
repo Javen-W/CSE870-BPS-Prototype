@@ -20,7 +20,7 @@ albedo_color = Color(0.992698, 0.431399, 9.62615e-07, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ks571"]
 
-[node name="Scenario1" type="Node3D"]
+[node name="Scenario4" type="Node3D"]
 
 [node name="Roads" type="Node3D" parent="."]
 
