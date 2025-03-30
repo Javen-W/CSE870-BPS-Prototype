@@ -66,5 +66,5 @@ func physics_update(delta: float) -> void:
 	UISignalBus.emit_accelerating_pressed(is_accelerating)
 	
 	# State change
-	if Input.is_action_just_pressed("shift_gear"):
+	if not car.force_reverse and Input.is_action_just_pressed("shift_gear"):
 		emit_signal("transitioned", "ForwardState")

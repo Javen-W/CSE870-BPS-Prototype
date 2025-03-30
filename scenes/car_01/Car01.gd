@@ -11,6 +11,7 @@ class_name Car01
 @export var alarm_muted: bool = false
 @export var collision_objects: Node3D
 @export var disable_steering: bool = false
+@export var force_reverse: bool = false
 
 @onready var state_machine: StateMachine = $StateMachine
 @onready var sub_viewport_rear: SubViewport = $Cameras/SubViewportRear
@@ -32,12 +33,16 @@ var _camera_index: int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Init states
-	state_machine.transition_state("ForwardState")
 	previous_speed = linear_velocity.length()
 	_target_rects = {}
 	handle_camera_cycled(false)
 	UISignalBus.emit_alarm_muted(alarm_muted)
 	UISignalBus.emit_collision_detected(false)
+	
+	if not force_reverse:
+		state_machine.transition_state("ForwardState")
+	else:
+		state_machine.transition_state("ReverseState")
 	
 	# Init signals
 	collision_detection_sensor.collision_detected.connect(_on_collision_detected)
