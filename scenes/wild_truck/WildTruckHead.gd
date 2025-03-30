@@ -24,7 +24,7 @@ func _on_collision_detected(body):
 func _physics_process(delta: float) -> void:
 	if target and not collided:
 		# Calculate direction to target
-		var target_direction = (global_position - target.global_position).normalized()
+		var target_direction = (target.global_position - global_position).normalized()
 		
 		# Calculate rotation
 		# var target_rotation = atan2(-target_direction.x, -target_direction.z)

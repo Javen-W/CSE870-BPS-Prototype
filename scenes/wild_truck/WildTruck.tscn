@@ -99,6 +99,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00169557, 0.222867, -0.095
 stream = ExtResource("3_cgyy4")
 pitch_scale = 0.05
 autoplay = true
+max_distance = 26.43
 attenuation_filter_cutoff_hz = 20500.0
 
 [node name="ImpactSound" type="AudioStreamPlayer3D" parent="."]
