@@ -29,33 +29,6 @@ albedo_color = Color(0.992698, 0.431399, 9.62615e-07, 1)
 [node name="RoadStraight2" parent="Roads" instance=ExtResource("1_r4jia")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
 
-[node name="RoadStraight3" parent="Roads" instance=ExtResource("1_r4jia")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40)
-
-[node name="RoadStraight4" parent="Roads" instance=ExtResource("1_r4jia")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 60)
-
-[node name="RoadStraight5" parent="Roads" instance=ExtResource("1_r4jia")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 80)
-
-[node name="RoadStraight6" parent="Roads" instance=ExtResource("1_r4jia")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100)
-
-[node name="RoadStraight7" parent="Roads" instance=ExtResource("1_r4jia")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 120)
-
-[node name="RoadStraight8" parent="Roads" instance=ExtResource("1_r4jia")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -140)
-
-[node name="RoadStraight9" parent="Roads" instance=ExtResource("1_r4jia")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -120)
-
-[node name="RoadStraight10" parent="Roads" instance=ExtResource("1_r4jia")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -100)
-
-[node name="RoadStraight11" parent="Roads" instance=ExtResource("1_r4jia")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -80)
-
 [node name="RoadStraight12" parent="Roads" instance=ExtResource("1_r4jia")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -60)
 
