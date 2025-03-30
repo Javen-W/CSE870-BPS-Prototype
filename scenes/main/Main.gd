@@ -27,13 +27,13 @@ func change_scenario_scene(scenario_index: int, scenario_path: String) -> void:
 func handle_scenario_change_input() -> void:
 	if Input.is_action_just_pressed("scenario1"):
 		change_scenario_scene(1, "res://scenes/scenarios/Scenario1.tscn")
-	elif Input.is_action_just_pressed("scenario2"):
-		change_scenario_scene(2, "res://scenes/scenarios/Scenario2.tscn")
+	#elif Input.is_action_just_pressed("scenario2"):
+		#change_scenario_scene(2, "res://scenes/scenarios/Scenario2.tscn")
 	elif Input.is_action_just_pressed("scenario3"):
-		change_scenario_scene(3, "res://scenes/scenarios/Scenario3.tscn")
+		change_scenario_scene(2, "res://scenes/scenarios/Scenario3.tscn")
 	elif Input.is_action_just_pressed("scenario4"):
-		change_scenario_scene(4, "res://scenes/scenarios/Scenario4.tscn")
+		change_scenario_scene(3, "res://scenes/scenarios/Scenario4.tscn")
 	elif Input.is_action_just_pressed("scenario5"):
-		change_scenario_scene(5, "res://scenes/scenarios/Scenario5.tscn")
-	elif Input.is_action_just_pressed("scenario6"):
-		change_scenario_scene(6, "res://scenes/scenarios/Scenario6.tscn")
+		change_scenario_scene(4, "res://scenes/scenarios/Scenario5.tscn")
+	#elif Input.is_action_just_pressed("scenario6"):
+		#change_scenario_scene(6, "res://scenes/scenarios/Scenario6.tscn")

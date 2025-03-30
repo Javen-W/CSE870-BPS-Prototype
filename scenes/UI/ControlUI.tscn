@@ -148,7 +148,7 @@ text = "Accelerate (W)"
 [node name="Label3" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
-text = "Scenario (1-6)"
+text = "Scenarios (1-4)"
 
 [node name="Label4" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer"]
 layout_mode = 2
