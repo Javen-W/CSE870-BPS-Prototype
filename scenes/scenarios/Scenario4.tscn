@@ -37,10 +37,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
 [node name="Car01" parent="." node_paths=PackedStringArray("collision_objects") instance=ExtResource("2_4bt68")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.68762, 0)
 collision_objects = NodePath("../CollisionObjects")
+disable_steering = true
 
 [node name="CollisionObjects" type="Node3D" parent="."]
 
 [node name="WildTruck" parent="CollisionObjects" node_paths=PackedStringArray("target") instance=ExtResource("3_e3aqh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.853453, -130.885)
-axis_lock_linear_y = true
 target = NodePath("../../Car01")

@@ -10,6 +10,7 @@ class_name Car01
 @export var always_display_backup_camera: bool = false
 @export var alarm_muted: bool = false
 @export var collision_objects: Node3D
+@export var disable_steering: bool = false
 
 @onready var state_machine: StateMachine = $StateMachine
 @onready var sub_viewport_rear: SubViewport = $Cameras/SubViewportRear
@@ -44,8 +45,9 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	# Common I/O events
-	steer_target = Input.get_axis("turn_right", "turn_left")
-	steer_target *= steer_limit
+	if not disable_steering:
+		steer_target = Input.get_axis("turn_right", "turn_left")
+		steer_target *= steer_limit
 	if Input.is_action_just_pressed("cycle_camera"):
 		handle_camera_cycled(true)
 	if Input.is_action_just_pressed("mute_alarm"):
