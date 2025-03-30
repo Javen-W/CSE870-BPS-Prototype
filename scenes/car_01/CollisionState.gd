@@ -11,10 +11,12 @@ func enter() -> void:
 	print("Entered CollisionState")
 	UISignalBus.emit_collision_detected(true)
 	car.crash_sfx_player.playing = true
-	
 	car.alarm_sfx_player.playing = true
 	car.alarm_sfx_player.stream_paused = false
 	car.alarm_sfx_player.pitch_scale = 0.85
+	
+	car.sensor_warning_label.visible = false
+	car.collision_warning_label.visible = true
 
 func physics_update(delta: float) -> void:
 	# Braking physics

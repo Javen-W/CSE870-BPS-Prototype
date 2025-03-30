@@ -119,6 +119,46 @@ mesh = SubResource("BoxMesh_r2vmo")
 transform = Transform3D(0.18433, 0, 0, 0, 0.165224, 0, 0, 0, 1, -0.00282037, 0.0360355, -0.596747)
 texture = SubResource("ViewportTexture_yir5o")
 
+[node name="SensorWarningLabel" type="Label" parent="VisualDisplayInterface" index="1"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -73.79
+offset_right = 160.0
+offset_bottom = -18.79
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "SENSOR FAILURES DETECTED: 
+Disabling Emergency Braking System"
+horizontal_alignment = 1
+
+[node name="CollisionWarningLabel" type="Label" parent="VisualDisplayInterface" index="2"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -73.79
+offset_right = 160.0
+offset_bottom = -18.79
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "COLLISION DETECTED: 
+Disabling vehicle controls"
+horizontal_alignment = 1
+
 [node name="Cameras" type="Node3D" parent="." index="9"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.68762, 0)
 

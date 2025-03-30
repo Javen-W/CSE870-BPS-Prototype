@@ -12,6 +12,7 @@ func enter() -> void:
 	car.visual_display_interface_sprite.visible = true
 	UISignalBus.emit_gear_changed("Reverse")
 	car.alarm_sfx_player.playing = true
+	car.sensor_warning_label.visible = car.disable_sensors
 
 func physics_update(delta: float) -> void:
 	# Emergency braking & alarm systems

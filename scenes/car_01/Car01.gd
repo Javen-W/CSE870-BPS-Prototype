@@ -25,6 +25,8 @@ class_name Car01
 @onready var collision_detection_sensor: CollisionDetectionSensor = $CollisionDetectionSensor
 @onready var alarm_sfx_player: AudioStreamPlayer3D = $AlarmSFXPlayer
 @onready var crash_sfx_player: AudioStreamPlayer3D = $CrashSFXPlayer
+@onready var sensor_warning_label: Label = $VisualDisplayInterface/SensorWarningLabel
+@onready var collision_warning_label: Label = $VisualDisplayInterface/CollisionWarningLabel
 
 var steer_target: float
 var previous_speed: float

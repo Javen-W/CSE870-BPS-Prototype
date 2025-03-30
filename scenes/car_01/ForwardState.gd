@@ -13,6 +13,7 @@ func enter() -> void:
 	if not car.always_display_backup_camera:
 		car.visual_display_interface_sprite.visible = false
 	car.alarm_sfx_player.playing = false
+	car.sensor_warning_label.visible = false
 
 func physics_update(delta: float) -> void:
 	# Acceleration physics
