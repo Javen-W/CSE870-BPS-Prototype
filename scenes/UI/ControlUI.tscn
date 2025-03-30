@@ -168,6 +168,16 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "Brake (S)"
 
+[node name="Label4" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Turn Left (A)"
+
+[node name="Label5" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Turn Right (D)"
+
 [node name="VSeparator" type="VSeparator" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 
