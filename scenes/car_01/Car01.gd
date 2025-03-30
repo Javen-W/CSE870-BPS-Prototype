@@ -12,6 +12,7 @@ class_name Car01
 @export var collision_objects: Node3D
 @export var disable_steering: bool = false
 @export var force_reverse: bool = false
+@export var disable_sensors: bool = false
 
 @onready var state_machine: StateMachine = $StateMachine
 @onready var sub_viewport_rear: SubViewport = $Cameras/SubViewportRear
@@ -70,19 +71,22 @@ func _physics_process(delta: float) -> void:
 	# Object highlighting & UI updates
 	for obj in collision_objects.get_children():
 		# Update reference rectangles
-		var obj_mesh = obj.get_child(0) as MeshInstance3D
-		update_target_rect(camera_rear, obj_mesh)
-		
-		# Update UI
 		var obj_body = obj as StaticBody3D
+		var obj_mesh = obj.get_child(0) as MeshInstance3D
+		if not disable_sensors:
+			update_target_rect(camera_rear, obj_mesh)
 		var distance = calculate_object_distance(obj_mesh)
 		var proximity = is_object_in_proximity(obj_body, obj_mesh)
 		UISignalBus.emit_object_changed(obj_body, distance, proximity)
 
 func calculate_object_distance(obj_mesh: MeshInstance3D) -> float:
+	if disable_sensors:
+		return -1.0
 	return camera_rear.global_position.distance_to(obj_mesh.global_position)
 
 func is_object_in_proximity(obj_body: StaticBody3D, obj_mesh: MeshInstance3D) -> bool:
+	if disable_sensors:
+		return false
 	var in_sensor = proximity_sensor_array.detected_objects.has(obj_body)
 	var in_fov = is_object_in_camera_fov(camera_rear, obj_mesh)
 	return in_sensor or in_fov

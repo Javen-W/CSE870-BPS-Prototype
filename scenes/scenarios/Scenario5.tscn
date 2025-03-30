@@ -68,6 +68,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
 [node name="Car01" parent="." node_paths=PackedStringArray("collision_objects") instance=ExtResource("2_pof3x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.68762, 0)
 collision_objects = NodePath("../CollisionObjects")
+disable_sensors = true
 
 [node name="CollisionObjects" type="Node3D" parent="."]
 

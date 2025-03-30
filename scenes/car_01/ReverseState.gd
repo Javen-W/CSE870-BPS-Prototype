@@ -16,7 +16,7 @@ func enter() -> void:
 func physics_update(delta: float) -> void:
 	# Emergency braking & alarm systems
 	var emergency_braking: bool = false
-	if not car.alarm_muted:
+	if not car.alarm_muted and not car.disable_sensors:
 		var min_dist: float = INF  # GDScript uses INF instead of float.MaxValue
 		for obj in car.collision_objects.get_children():
 			var obj_body = obj as StaticBody3D
