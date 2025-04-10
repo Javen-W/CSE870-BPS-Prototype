@@ -18,8 +18,8 @@ script = ExtResource("1_1kk1h")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
-offset_right = 100.0
-offset_bottom = 90.0
+offset_right = 110.0
+offset_bottom = 100.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_uprsm")
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel"]
@@ -40,7 +40,7 @@ alignment = 1
 
 [node name="NameLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 14
 text = "{}"
 horizontal_alignment = 1
 
@@ -49,10 +49,10 @@ layout_mode = 2
 
 [node name="DistanceLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 12
 text = "Distance: {}"
 
 [node name="ProximityLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 12
 text = "Proximity: {}"

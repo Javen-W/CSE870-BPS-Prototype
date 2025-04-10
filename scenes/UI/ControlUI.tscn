@@ -8,6 +8,7 @@ colors = PackedColorArray(0, 0, 0, 1, 0.556054, 0.556054, 0.556054, 1, 1, 1, 1, 
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_876e0"]
 gradient = SubResource("Gradient_2gh0l")
+fill_from = Vector2(0.269231, 0.0940171)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6v0m5"]
 texture = SubResource("GradientTexture2D_876e0")
@@ -24,9 +25,9 @@ size_flags_horizontal = 3
 script = ExtResource("1_v8dnp")
 
 [node name="Panel" type="Panel" parent="."]
-modulate = Color(1, 1, 1, 0.447059)
+modulate = Color(1, 1, 1, 0.568627)
 top_level = true
-custom_minimum_size = Vector2(0, 150)
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -64,13 +65,13 @@ size_flags_vertical = 3
 [node name="GearLabel" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 14
 text = "Gear: {}"
 
 [node name="VelocityLabel" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 14
 text = "Velocity: {}"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
@@ -81,13 +82,13 @@ size_flags_vertical = 3
 [node name="AcceleratingLabel" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 14
 text = "Accelerating: {}"
 
 [node name="BrakingLabel" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 14
 text = "Braking: {}"
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
@@ -98,13 +99,13 @@ size_flags_vertical = 3
 [node name="CameraLabel" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 14
 text = "Camera: {}"
 
 [node name="ScenarioLabel" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 14
 text = "Scenario: {}"
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
@@ -115,13 +116,13 @@ size_flags_vertical = 3
 [node name="MutedLabel" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 14
 text = "Muted: {}"
 
 [node name="CollidedLabel" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 14
 text = "Collision: {}"
 
 [node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer"]
@@ -140,53 +141,53 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = SubResource("FontVariation_7grjg")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 14
 text = "Shift Gear (R)"
 
 [node name="Label2" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = SubResource("FontVariation_7grjg")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 14
 text = "Accelerate (W)"
 
 [node name="Label3" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = SubResource("FontVariation_7grjg")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 14
 text = "Scenarios (1-4)"
 
 [node name="Label4" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = SubResource("FontVariation_7grjg")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 14
 text = "Mute Alarm (M)"
+
+[node name="Label6" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_7grjg")
+theme_override_font_sizes/font_size = 14
+text = "Camera (V)"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-theme_override_fonts/font = SubResource("FontVariation_7grjg")
-theme_override_font_sizes/font_size = 12
-text = "Camera (V)"
-
 [node name="Label3" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 theme_override_fonts/font = SubResource("FontVariation_7grjg")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 14
 text = "Brake (S)"
-
-[node name="Label4" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-theme_override_fonts/font = SubResource("FontVariation_7grjg")
-theme_override_font_sizes/font_size = 12
-text = "Turn Left (A)"
 
 [node name="Label5" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 theme_override_fonts/font = SubResource("FontVariation_7grjg")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 14
 text = "Turn Right (D)"
+
+[node name="Label6" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_7grjg")
+theme_override_font_sizes/font_size = 14
+text = "Turn Left (A)"
 
 [node name="VSeparator" type="VSeparator" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
@@ -200,7 +201,7 @@ follow_focus = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 14
 text = "Scenario (1): Backup normally without any collision objects."
 autowrap_mode = 2
 
@@ -210,5 +211,5 @@ layout_mode = 2
 [node name="ObjectPanelContainer" type="HBoxContainer" parent="Panel/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 15
+theme_override_constants/separation = 20
 alignment = 1
