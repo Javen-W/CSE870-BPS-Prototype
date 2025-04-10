@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 UISignalBus="*res://globals/UISignalBus.gd"
 
+[display]
+
+window/size/resizable=false
+
 [dotnet]
 
 project/assembly_name="CSE870 BPS Prototype"
@@ -92,3 +96,7 @@ scenario6={
 "deadzone": 0.5,
 "events": []
 }
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true
